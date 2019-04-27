@@ -22,9 +22,14 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("gold_pile");
+        
         body = GetComponentInChildren<Rigidbody2D>();
         previousPosition = body.position;
+    }
+
+    void Awake()
+    {
+        //target = GameObject.FindGameObjectWithTag("gold_pile");
     }
 
     // Update is called once per frame
@@ -43,7 +48,7 @@ public class Enemy : MonoBehaviour
         {
             //Walk if not grabbed
             MoveTowardNearestGoldPile();
-            
+
         }
     }
     private void MoveTowardNearestGoldPile()
@@ -52,7 +57,9 @@ public class Enemy : MonoBehaviour
         {
             target = FindClosestGoldPile();
         }
-        else
+        
+
+        if (target != null)
         {
 
             Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
@@ -82,6 +89,16 @@ public class Enemy : MonoBehaviour
         }
         return closest;
     }
+
+    void FixedUpdate()
+    {
+        previousPositions.Enqueue(body.position - (Vector2)previousPosition);
+        if (previousPositions.Count > 5)
+            previousPositions.Dequeue();
+
+        previousPosition = body.position;
+    }
+
     public void StartGrab()
     {
         isGrabbed = true;

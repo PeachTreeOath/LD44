@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3557259448044398860}
   m_Layer: 8
   m_Name: diamond
-  m_TagString: Untagged
+  m_TagString: gold_pile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
