@@ -22,9 +22,14 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("gold_pile");
+        
         body = GetComponentInChildren<Rigidbody2D>();
         previousPosition = body.position;
+    }
+
+    void Awake()
+    {
+        //target = GameObject.FindGameObjectWithTag("gold_pile");
     }
 
     // Update is called once per frame
@@ -42,21 +47,27 @@ public class Enemy : MonoBehaviour
         else
         {
             //Walk if not grabbed
-
-            if (target == null)
-            {
-                target = FindClosestGoldPile();
-            }
-            else
-            {
-
-                Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
-                Vector2 directionNormalized = direction.normalized;
-                Vector2 velocity = new Vector2(directionNormalized.x * walkSpeed, directionNormalized.y * walkSpeed);
-                GetComponent<Rigidbody2D>().velocity = -velocity;
-            }
+            MoveTowardNearestGoldPile();
 
         }
+    }
+    private void MoveTowardNearestGoldPile()
+    {
+        if (target == null)
+        {
+            target = FindClosestGoldPile();
+        }
+        
+
+        if (target != null)
+        {
+
+            Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
+            Vector2 directionNormalized = direction.normalized;
+            Vector2 velocity = new Vector2(directionNormalized.x * walkSpeed, directionNormalized.y * walkSpeed);
+            GetComponent<Rigidbody2D>().velocity = -velocity;
+        }
+
     }
 
     private GameObject FindClosestGoldPile()
@@ -78,6 +89,16 @@ public class Enemy : MonoBehaviour
         }
         return closest;
     }
+
+    void FixedUpdate()
+    {
+        previousPositions.Enqueue(body.position - (Vector2)previousPosition);
+        if (previousPositions.Count > 5)
+            previousPositions.Dequeue();
+
+        previousPosition = body.position;
+    }
+
     public void StartGrab()
     {
         isGrabbed = true;

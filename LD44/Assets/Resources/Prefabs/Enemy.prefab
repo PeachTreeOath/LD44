@@ -132,5 +132,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 0.5
-  throwSpeed: 5
-  moveTowardsSpeed: 8
+  throwSpeed: 50
+  moveTowardsSpeed: 10

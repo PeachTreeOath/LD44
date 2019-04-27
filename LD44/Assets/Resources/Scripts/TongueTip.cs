@@ -52,12 +52,12 @@ public class TongueTip : MonoBehaviour
             transform.position = returnPosition;
         }
 
-        if (isEnemyTongued)
+        /* if (isEnemyTongued)
         {
             Debug.Log("I've tongued something, make me do something");
             isEnemyTongued = false;
             tonguedEnemy = null;
-        }
+        }*/
     }
 
     public void SetTargetPosition(Vector3 target)
@@ -68,9 +68,11 @@ public class TongueTip : MonoBehaviour
     public void ReleaseEnemy()
     {
         Debug.Log("ReleaseEnemy");
-
-        tonguedEnemy.ReleaseGrab();
-        tonguedEnemy = null;
+        if (tonguedEnemy != null)
+        {
+            tonguedEnemy.ReleaseGrab();
+            tonguedEnemy = null;
+        }
     }
 
     /// <summary>
