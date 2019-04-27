@@ -18,17 +18,22 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private float waveWaitTime = 20.0f;
 
-    [SerializeField]
-    private int enemyAmount = 1;
+    private int enemyAmount = 0;
     private int enemyTypeMaxRange = 0;
 
     private int randomSpawnPointNum;
     private int randomEnemyType;
+
     [SerializeField]
     private bool spawnEnemyOn = true;
+
     [SerializeField]
     private bool waveSpawnOn = true;
     private int waveNumber = 1;
+
+    // timer
+    public float spawnDelay = 3.0f;
+    public float timer = 0.0f;
 
     private void Awake()
     {
@@ -41,9 +46,15 @@ public class SpawnManager : MonoBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        WaveSpawn();
+        timer += Time.deltaTime;
+
+        if (timer >= spawnDelay)
+        {
+            SpawnEnemy();
+            timer = 0.0f;
+        }
     }
 
     private void SpawnEnemy()
@@ -54,10 +65,15 @@ public class SpawnManager : MonoBehaviour
             randomEnemyType = Random.Range(0, enemyTypeMaxRange);
             //for (int i = 0; i < enemyAmount; i++)
             //{
-            //   Instantiate(enemyTypes[randomEnemyType], spawnPoints[randomSpawnPointNum].transform.position, Quaternion.identity);
+            //    Instantiate(enemyTypes[randomEnemyType], allChildren[randomSpawnPointNum].transform.position, Quaternion.identity);
             //}
             Instantiate(enemyTypes[randomEnemyType], allChildren[randomSpawnPointNum].transform.position, Quaternion.identity);
-            spawnEnemyOn = false;
+            enemyAmount++;
+            if (enemyAmount == 3)
+            {
+                spawnEnemyOn = false;
+            }
+            //spawnEnemyOn = false;
             //StartCoroutine(SpawnPowerUpRoutine());
         }
 
