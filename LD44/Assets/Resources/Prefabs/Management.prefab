@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6171634682322486535}
+  - component: {fileID: 7394523746968729968}
+  - component: {fileID: 7394523746968729967}
   m_Layer: 0
   m_Name: Management
   m_TagString: Untagged
@@ -30,3 +32,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7394523746968729968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394523746968729966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a938f62a8d094c21a601d1a1a9a606f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7394523746968729967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394523746968729966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7092acd852c7f48a0bd224055c31ae3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  examplePrefab: {fileID: 0}
