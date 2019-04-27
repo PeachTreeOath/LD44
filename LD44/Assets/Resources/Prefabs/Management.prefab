@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a938f62a8d094c21a601d1a1a9a606f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStarted: 0
+  startScreen: 1
 --- !u!114 &7394523746968729967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7092acd852c7f48a0bd224055c31ae3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  examplePrefab: {fileID: 0}
+  mimicClosedSprite: {fileID: 21300000, guid: fe54ea1c3ad79437fb2a2a7f530dd196, type: 3}
+  mimicOpenedSprite: {fileID: 21300000, guid: b2b80c5c858f14b82817e3c7f6e64895, type: 3}
 --- !u!114 &592650767271156127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,8 +76,9 @@ MonoBehaviour:
   spawnPointParent: {fileID: 0}
   enemyTypes:
   - {fileID: 960242478692454744, guid: 25807d1e0cd7fb149b34cb98a990dbc5, type: 3}
-  spawnWaitTime: 8
-  waveWaitTime: 20
-  enemyAmount: 2
   spawnEnemyOn: 1
-  waveSpawnOn: 1
+  inWave: 0
+  spawnDelay: 3
+  spawnTimer: 0
+  waveDelay: 0
+  waveTimer: 5

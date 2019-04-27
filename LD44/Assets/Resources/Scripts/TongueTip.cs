@@ -51,6 +51,7 @@ public class TongueTip : MonoBehaviour
                 isTongueReturning = false;
                 isPlayerTongueing = false;
                 player.GetComponentInChildren<LineRenderer>().positionCount = 0;
+                        player.spriteRenderer.sprite = ResourceLoader.instance.mimicClosedSprite;
             }
         }
         else

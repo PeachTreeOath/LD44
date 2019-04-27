@@ -9,7 +9,9 @@ using UnityEngine;
 /// <typeparam name="ResourceLoader"></typeparam>
 public class ResourceLoader : Singleton<ResourceLoader>
 {
-    [HideInInspector] public GameObject examplePrefab;
+    public Sprite mimicClosedSprite;
+    public Sprite mimicOpenedSprite;
+
 
     // Use this for initialization
     protected override void Awake()
@@ -21,6 +23,7 @@ public class ResourceLoader : Singleton<ResourceLoader>
 
     private void LoadResources()
     {
-        //examplePrefab = Resources.Load("Prefabs/Example") as GameObject;
+       // mimicClosedSprite = Resources.Load<Sprite>("Textures/sweet_mimic");
+       // mimicOpenedSprite = Resources.Load<Sprite>("Textures/sCARY_MIMIC");
     }
 }
