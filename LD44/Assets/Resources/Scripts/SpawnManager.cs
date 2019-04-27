@@ -41,10 +41,9 @@ public class SpawnManager : MonoBehaviour
         inWave = true;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         DestroyEnemyCount();
-        WaveSpawn();
         timer += Time.deltaTime;
 
         if (timer >= spawnDelay)
@@ -77,21 +76,17 @@ public class SpawnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             enemyAmount = 0;
-            inWave = false;
-            //Debug.Log("Enemy amount = " + enemyAmount);
+            WaveSpawn();
+            Debug.Log("Enemy amount = " + enemyAmount);
         }
     }
 
     private void WaveSpawn()
-    {
-        if (!inWave)
-        {
-            
+    { 
             enemyAmountMax *= 2;
             waveNumber++;
             spawnEnemyOn = true;
-            Debug.Log("Spawning wave " + waveNumber);
-        }
+            //Debug.Log("Spawning wave " + waveNumber);
     }
 
 }
