@@ -92,13 +92,25 @@ public class TreasureController : MonoBehaviour
 
         if (found.Key != null)
         {
-            treasures.Remove(found);
             found.Value.SetActive(false);
         }
 
-        CountChangedEvent?.Invoke(treasures.Count);
-
         return found.Value;
+    }
+
+    public bool DestoryTreasure(GameObject treasure)
+    {
+        KeyValuePair<Vector2, GameObject> found = treasures.FirstOrDefault(obj => obj.Value == treasure);
+
+        if (found.Key != null)
+        {
+            treasures.Remove(found);
+            Destroy(found.Value);
+            CountChangedEvent?.Invoke(treasures.Count);
+            return true;
+        }
+
+        return false;
     }
 
     #endregion Public Methods
