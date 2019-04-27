@@ -21,6 +21,76 @@ public class Enemy : MonoBehaviour
     //AI states
     public bool hasGold = false;
 
+    public enum EnemyState
+    {
+        SEEKING_GOLD,
+        GATHERING_GOLD,
+        LEAVING_WITH_GOLD,
+        STRUGGLING,
+        BUMPED,
+        DAMAGED,
+        DYING,
+        BEING_FLUNG
+    }
+
+    private EnemyState enemyState;
+    private int timeInStatus, goldCarried;
+
+    //enemy type attributes
+    private int mass, speed, maxGoldCapacity, stunTime, goldGatherRange, goldGatherTime;
+
+    private EnemyState selfDetermineState()
+    {
+        if (goldCarried >= maxGoldCapacity)
+        {
+            return EnemyState.LEAVING_WITH_GOLD;
+        }
+
+        /*else if () { // enemy is within range of a gold pile
+          return EnemyState.GATHERING_GOLD;
+        }*/
+        else return EnemyState.SEEKING_GOLD;
+    }
+
+    private void doStateAction()
+    {
+        if (enemyState == null)
+        {
+            enemyState = selfDetermineState();
+        }
+
+        switch (enemyState)
+        {
+            case EnemyState.SEEKING_GOLD:
+                seekingGoldBehavior();
+                break;
+            case EnemyState.GATHERING_GOLD:
+                gatheringGoldBehavior();
+                break;
+            case EnemyState.LEAVING_WITH_GOLD:
+                leavingWithGoldBehavior();
+                break;
+            case EnemyState.STRUGGLING:
+                strugglingBehavior();
+                break;
+            case EnemyState.BUMPED:
+                bumpedBehavior();
+                break;
+            case EnemyState.DAMAGED:
+                damagedBehavior();
+                break;
+            case EnemyState.DYING:
+                dyingBehavior();
+                break;
+            case EnemyState.BEING_FLUNG:
+                beingFlungBehavior();
+                break;
+            default:
+                throw new System.Exception();
+        }
+    }
+
+
     // Use this for initialization
     void Start()
     {
@@ -130,4 +200,44 @@ public class Enemy : MonoBehaviour
             body.velocity = (totalVelocity / previousPositions.Count) * throwSpeed;
     }
 
+
+    void seekingGoldBehavior()
+    {
+
+    }
+
+    void gatheringGoldBehavior()
+    {
+
+    }
+
+    void leavingWithGoldBehavior()
+    {
+
+    }
+
+    void strugglingBehavior()
+    {
+
+    }
+
+    void bumpedBehavior()
+    {
+
+    }
+
+    void damagedBehavior()
+    {
+
+    }
+
+    void dyingBehavior()
+    {
+
+    }
+
+    void beingFlungBehavior()
+    {
+
+    }
 }
