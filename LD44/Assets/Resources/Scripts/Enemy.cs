@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     private Queue<Vector3> previousPositions = new Queue<Vector3>();
     private Vector3 previousPosition;
 
+    //AI states
+    public bool hasGold = false;
 
     // Use this for initialization
     void Start()
@@ -44,20 +46,27 @@ public class Enemy : MonoBehaviour
         {
 
         }
-        else
+        else if (!hasGold)
         {
             //Walk if not grabbed
-            MoveTowardNearestGoldPile();
+            MoveTowardNearestObjectWithTag("gold_pile");
+
+        }
+        else if (hasGold)
+        {
+            //Walk if not grabbed
+            MoveTowardNearestObjectWithTag("door");
 
         }
     }
-    private void MoveTowardNearestGoldPile()
+
+    private void MoveTowardNearestObjectWithTag(string tag)
     {
         if (target == null)
         {
-            target = FindClosestGoldPile();
+            target = FindClosestObjectWithTag(tag);
         }
-        
+
 
         if (target != null)
         {
@@ -70,10 +79,10 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private GameObject FindClosestGoldPile()
+    private GameObject FindClosestObjectWithTag(string tag)
     {
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("gold_pile");
+        gos = GameObject.FindGameObjectsWithTag(tag);
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
