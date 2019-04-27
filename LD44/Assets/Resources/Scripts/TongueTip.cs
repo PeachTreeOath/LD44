@@ -8,9 +8,11 @@ public class TongueTip : MonoBehaviour
     public bool isTongueExtending;
     public bool isTongueReturning;
     public bool isPlayerTongueing = false;
+    public bool isEnemyTongued = false;
     private Vector3 targetPosition;
     private Vector3 returnPosition;
     private PlayerController player;
+    private Transform tonguedEnemy;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -49,10 +51,30 @@ public class TongueTip : MonoBehaviour
         {
             transform.position = returnPosition;
         }
+
+        if (isEnemyTongued)
+        {
+            Debug.Log("I've tongued something, make me do something");
+            isEnemyTongued = false;
+            tonguedEnemy = null;
+        }
     }
 
     public void SetTargetPosition(Vector3 target)
     {
         targetPosition = target;
+    }
+
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        isTongueExtending = false;
+        isTongueReturning = true;
+        isEnemyTongued = true;
+        tonguedEnemy = other.transform;
     }
 }
