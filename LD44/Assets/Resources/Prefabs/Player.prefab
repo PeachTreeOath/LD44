@@ -223,6 +223,7 @@ MonoBehaviour:
   isTongueExtending: 0
   isTongueReturning: 0
   isPlayerTongueing: 0
+  isEnemyTongued: 0
 --- !u!58 &836631394981164332
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -372,4 +373,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9219de6e6cc40209f4cdc5960688f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 2
