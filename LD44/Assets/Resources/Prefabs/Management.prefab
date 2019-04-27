@@ -70,3 +70,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016d88f892f392a49b56257d911bb301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPointParent: {fileID: 0}
+  enemyTypes:
+  - {fileID: 960242478692454744, guid: 25807d1e0cd7fb149b34cb98a990dbc5, type: 3}
+  spawnWaitTime: 8
+  waveWaitTime: 20
+  enemyAmount: 2
+  spawnEnemyOn: 1
+  waveSpawnOn: 1

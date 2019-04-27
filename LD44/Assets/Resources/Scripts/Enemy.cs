@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public float moveTowardsSpeed;
 
     private bool isGrabbed;
+    private bool isThrown;
     private Rigidbody2D body;
     private Queue<Vector3> previousPositions = new Queue<Vector3>();
     private Vector3 previousPosition;
@@ -34,27 +35,49 @@ public class Enemy : MonoBehaviour
             Vector2 newPos = Vector2.MoveTowards(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), moveTowardsSpeed * Time.deltaTime);
             body.position = newPos;
         }
+        else if (isThrown)
+        {
+
+        }
         else
         {
             //Walk if not grabbed
 
-            //Range = Vector2.Distance(transform.position, target.transform.position);
-            Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
-            Vector2 directionNormalized = direction.normalized;
-            Vector2 velocity = new Vector2(directionNormalized.x * walkSpeed, directionNormalized.y * walkSpeed);
-            body.velocity = -velocity;
+            if (target == null)
+            {
+                target = FindClosestGoldPile();
+            }
+            else
+            {
+
+                Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
+                Vector2 directionNormalized = direction.normalized;
+                Vector2 velocity = new Vector2(directionNormalized.x * walkSpeed, directionNormalized.y * walkSpeed);
+                GetComponent<Rigidbody2D>().velocity = -velocity;
+            }
+
         }
     }
 
-    void FixedUpdate()
+    public GameObject FindClosestGoldPile()
     {
-        previousPositions.Enqueue(body.position - (Vector2)previousPosition);
-        if (previousPositions.Count > 5)
-            previousPositions.Dequeue();
-
-        previousPosition = body.position;
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("gold_pile");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
     }
-
     public void StartGrab()
     {
         isGrabbed = true;
@@ -76,4 +99,5 @@ public class Enemy : MonoBehaviour
         if (previousPositions.Count != 0)
             body.velocity = (totalVelocity / previousPositions.Count) * throwSpeed;
     }
+
 }

@@ -4,86 +4,95 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-   [SerializeField]
-   private GameObject[] spawnPoints;
+    [SerializeField]
+    private GameObject spawnPointParent;
 
-   [SerializeField]
-   private GameObject[] enemyTypes;
+    Transform[] allChildren;
 
-   [SerializeField]
-   private float spawnWaitTime = 8.0f;
+    [SerializeField]
+    private GameObject[] enemyTypes;
 
-   [SerializeField]
-   private float waveWaitTime = 20.0f;
+    [SerializeField]
+    private float spawnWaitTime = 8.0f;
 
-   [SerializeField]
-   private int enemyAmount = 2;
-   private int enemyTypeMaxRange = 0;
+    [SerializeField]
+    private float waveWaitTime = 20.0f;
 
-   private int randomSpawnPointNum;
-   private int randomEnemyType;
-   [SerializeField]
-   private bool spawnEnemyOn = true;
-   [SerializeField]
-   private bool waveSpawnOn = true;
-   private int waveNumber = 1;
+    [SerializeField]
+    private int enemyAmount = 1;
+    private int enemyTypeMaxRange = 0;
 
-   // Start is called before the first frame update
-   void Start()
-   {
-      
-   }
+    private int randomSpawnPointNum;
+    private int randomEnemyType;
+    [SerializeField]
+    private bool spawnEnemyOn = true;
+    [SerializeField]
+    private bool waveSpawnOn = true;
+    private int waveNumber = 1;
 
-   private void Update()
-   {
-      WaveSpawn(); 
-   }
+    private void Awake()
+    {
+        allChildren = spawnPointParent.GetComponentsInChildren<Transform>();
+    }
 
-   private void SpawnEnemy()
-   {
-      if (spawnEnemyOn)
-      {
-         randomSpawnPointNum = Random.Range(0, spawnPoints.Length);
-         randomEnemyType = Random.Range(0, enemyTypeMaxRange);
-         for (int i = 0; i < enemyAmount; i++)
-         {
-            Instantiate(enemyTypes[randomEnemyType], spawnPoints[randomSpawnPointNum].transform.position, Quaternion.identity);
-         }
-         spawnEnemyOn = false;
-         StartCoroutine(SpawnPowerUpRoutine());
-      }
+    // Start is called before the first frame update
+    void Start()
+    {
 
-   }
+    }
 
-   private void WaveSpawn()
-   {
-      if (waveSpawnOn)
-      {
-         SpawnEnemy();
-      }
+    private void Update()
+    {
+        WaveSpawn();
+    }
 
-      if (enemyAmount == 0)
-      {
-         waveSpawnOn = false;
-         StartCoroutine(WavePowerUpRoutine());
-      }
+    private void SpawnEnemy()
+    {
+        if (spawnEnemyOn)
+        {
+            randomSpawnPointNum = Random.Range(0, allChildren.Length);
+            randomEnemyType = Random.Range(0, enemyTypeMaxRange);
+            //for (int i = 0; i < enemyAmount; i++)
+            //{
+            //   Instantiate(enemyTypes[randomEnemyType], spawnPoints[randomSpawnPointNum].transform.position, Quaternion.identity);
+            //}
+            Instantiate(enemyTypes[randomEnemyType], allChildren[randomSpawnPointNum].transform.position, Quaternion.identity);
+            spawnEnemyOn = false;
+            //StartCoroutine(SpawnPowerUpRoutine());
+        }
 
-      if (!waveSpawnOn)
-      {
-         waveNumber++;
-      }
-   }
+    }
 
-   private IEnumerator SpawnPowerUpRoutine()
-   {
-      yield return new WaitForSeconds(spawnWaitTime);
-      spawnEnemyOn = true;
-   }
+    private void WaveSpawn()
+    {
+        if (waveSpawnOn)
+        {
+            SpawnEnemy();
+            //enemyAmount++;
+        }
 
-   private IEnumerator WavePowerUpRoutine()
-   {
-      yield return new WaitForSeconds(waveWaitTime);
-      waveSpawnOn = true;
-   }
+        if (enemyAmount == 2)
+        {
+            waveSpawnOn = false;
+            StartCoroutine(WavePowerUpRoutine());
+        }
+
+        if (!waveSpawnOn)
+        {
+            waveNumber++;
+        }
+    }
+
+    private IEnumerator SpawnPowerUpRoutine()
+    {
+        yield return new WaitForSeconds(spawnWaitTime);
+        spawnEnemyOn = true;
+    }
+
+    private IEnumerator WavePowerUpRoutine()
+    {
+        yield return new WaitForSeconds(waveWaitTime);
+        waveSpawnOn = true;
+    }
 
 }
