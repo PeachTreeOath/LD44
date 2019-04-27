@@ -22,9 +22,14 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("gold_pile");
+        
         body = GetComponentInChildren<Rigidbody2D>();
         previousPosition = body.position;
+    }
+
+    void Awake()
+    {
+        //target = GameObject.FindGameObjectWithTag("gold_pile");
     }
 
     // Update is called once per frame
@@ -52,7 +57,9 @@ public class Enemy : MonoBehaviour
         {
             target = FindClosestGoldPile();
         }
-        else
+        
+
+        if (target != null)
         {
 
             Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
