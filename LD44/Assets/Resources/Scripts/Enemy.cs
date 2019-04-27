@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     private GameObject target;
+    private string targetTag;
     private float Range = 10f;
     public float walkSpeed = 10f;
 
@@ -18,19 +19,86 @@ public class Enemy : MonoBehaviour
     private Queue<Vector3> previousPositions = new Queue<Vector3>();
     private Vector3 previousPosition;
 
+    //AI states
+    public bool hasGold = false;
+
+    public enum EnemyState
+    {
+        SEEKING_GOLD,
+        GATHERING_GOLD,
+        LEAVING_WITH_GOLD,
+        STRUGGLING,
+        BUMPED,
+        DAMAGED,
+        DYING,
+        BEING_FLUNG
+    }
+
+    private EnemyState enemyState;
+    private int timeInStatus, goldCarried;
+
+    //enemy type attributes
+    private int mass, speed, maxGoldCapacity, stunTime, goldGatherRange, goldGatherTime;
+
+    private EnemyState selfDetermineState()
+    {
+        if (goldCarried >= maxGoldCapacity)
+        {
+            return EnemyState.LEAVING_WITH_GOLD;
+        }
+
+        /*else if () { // enemy is within range of a gold pile
+          return EnemyState.GATHERING_GOLD;
+        }*/
+        else return EnemyState.SEEKING_GOLD;
+    }
+
+    private void doStateAction()
+    {
+        if (enemyState == null)
+        {
+            enemyState = selfDetermineState();
+        }
+
+        switch (enemyState)
+        {
+            case EnemyState.SEEKING_GOLD:
+                seekingGoldBehavior();
+                break;
+            case EnemyState.GATHERING_GOLD:
+                gatheringGoldBehavior();
+                break;
+            case EnemyState.LEAVING_WITH_GOLD:
+                leavingWithGoldBehavior();
+                break;
+            case EnemyState.STRUGGLING:
+                strugglingBehavior();
+                break;
+            case EnemyState.BUMPED:
+                bumpedBehavior();
+                break;
+            case EnemyState.DAMAGED:
+                damagedBehavior();
+                break;
+            case EnemyState.DYING:
+                dyingBehavior();
+                break;
+            case EnemyState.BEING_FLUNG:
+                beingFlungBehavior();
+                break;
+            default:
+                throw new System.Exception();
+        }
+    }
+
 
     // Use this for initialization
     void Start()
     {
-        
         body = GetComponentInChildren<Rigidbody2D>();
         previousPosition = body.position;
     }
 
-    void Awake()
-    {
-        //target = GameObject.FindGameObjectWithTag("gold_pile");
-    }
 
     // Update is called once per frame
     void Update()
@@ -44,20 +112,28 @@ public class Enemy : MonoBehaviour
         {
 
         }
-        else
+        else if (!hasGold)
         {
             //Walk if not grabbed
-            MoveTowardNearestGoldPile();
+            MoveTowardNearestObjectWithTag("gold_pile");
+
+        }
+        else if (hasGold)
+        {
+            //Walk if not grabbed
+            MoveTowardNearestObjectWithTag("door");
 
         }
     }
-    private void MoveTowardNearestGoldPile()
+
+    private void MoveTowardNearestObjectWithTag(string tag)
     {
-        if (target == null)
+        if (target == null || !targetTag.Equals(tag))
         {
-            target = FindClosestGoldPile();
+            target = FindClosestObjectWithTag(tag);
+            targetTag = tag;
         }
-        
+
 
         if (target != null)
         {
@@ -70,10 +146,10 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private GameObject FindClosestGoldPile()
+    private GameObject FindClosestObjectWithTag(string tag)
     {
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("gold_pile");
+        gos = GameObject.FindGameObjectsWithTag(tag);
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
@@ -109,6 +185,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("releaseGrab");
 
         isGrabbed = false;
+        isThrown = true;
 
         Vector3 totalVelocity = Vector3.zero;
 
@@ -121,4 +198,44 @@ public class Enemy : MonoBehaviour
             body.velocity = (totalVelocity / previousPositions.Count) * throwSpeed;
     }
 
+
+    void seekingGoldBehavior()
+    {
+
+    }
+
+    void gatheringGoldBehavior()
+    {
+
+    }
+
+    void leavingWithGoldBehavior()
+    {
+
+    }
+
+    void strugglingBehavior()
+    {
+
+    }
+
+    void bumpedBehavior()
+    {
+
+    }
+
+    void damagedBehavior()
+    {
+
+    }
+
+    void dyingBehavior()
+    {
+
+    }
+
+    void beingFlungBehavior()
+    {
+
+    }
 }

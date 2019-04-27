@@ -12,14 +12,10 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] enemyTypes;
 
-    [SerializeField]
-    private float spawnWaitTime = 8.0f;
-
-    [SerializeField]
-    private float waveWaitTime = 20.0f;
-
+    private int enemyAmountMax = 3;
     private int enemyAmount = 0;
     private int enemyTypeMaxRange = 0;
+    private int enemiesDead;
 
     private int randomSpawnPointNum;
     private int randomEnemyType;
@@ -28,12 +24,14 @@ public class SpawnManager : MonoBehaviour
     private bool spawnEnemyOn = true;
 
     [SerializeField]
-    private bool waveSpawnOn = true;
+    private bool inWave;
     private int waveNumber = 1;
 
     // timer
     public float spawnDelay = 3.0f;
-    public float timer = 0.0f;
+    public float spawnTimer = 0.0f;
+    public float waveDelay = 0.0f;
+    public float waveTimer = 5.0f;
 
     private void Awake()
     {
@@ -43,18 +41,21 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+      
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        timer += Time.deltaTime;
+        DestroyEnemyCount();
+        spawnTimer += Time.deltaTime;
 
-        if (timer >= spawnDelay)
+        if (spawnTimer >= spawnDelay)
         {
             SpawnEnemy();
-            timer = 0.0f;
+            spawnTimer = 0.0f;
         }
+
+        StartNewWave();
     }
 
     private void SpawnEnemy()
@@ -63,52 +64,51 @@ public class SpawnManager : MonoBehaviour
         {
             randomSpawnPointNum = Random.Range(0, allChildren.Length);
             randomEnemyType = Random.Range(0, enemyTypeMaxRange);
-            //for (int i = 0; i < enemyAmount; i++)
-            //{
-            //    Instantiate(enemyTypes[randomEnemyType], allChildren[randomSpawnPointNum].transform.position, Quaternion.identity);
-            //}
+
+            // Spawning enemies in random locations
             Instantiate(enemyTypes[randomEnemyType], allChildren[randomSpawnPointNum].transform.position, Quaternion.identity);
             enemyAmount++;
-            if (enemyAmount == 3)
+            Debug.Log("Number of enemies: " + enemyAmount);
+            if (enemyAmount == enemyAmountMax)
             {
                 spawnEnemyOn = false;
             }
-            //spawnEnemyOn = false;
-            //StartCoroutine(SpawnPowerUpRoutine());
+
         }
 
+    }
+
+    private void DestroyEnemyCount ()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            enemyAmount = 0;
+            enemiesDead = enemyAmountMax;
+            Debug.Log("Enemy amount = " + enemyAmount);
+        }
+    }
+
+    private void StartNewWave()
+    {
+        if (enemiesDead == enemyAmountMax)
+        {
+            waveTimer -= Time.deltaTime;
+            Debug.Log("Wave Delay countdown = " + waveTimer);
+
+            if (waveTimer <= waveDelay)
+            {
+                WaveSpawn();
+            }
+        }
     }
 
     private void WaveSpawn()
-    {
-        if (waveSpawnOn)
-        {
-            SpawnEnemy();
-            //enemyAmount++;
-        }
+    { 
 
-        if (enemyAmount == 2)
-        {
-            waveSpawnOn = false;
-            StartCoroutine(WavePowerUpRoutine());
-        }
-
-        if (!waveSpawnOn)
-        {
+            enemyAmountMax *= 2;            
             waveNumber++;
-        }
-    }
-
-    private IEnumerator SpawnPowerUpRoutine()
-    {
-        yield return new WaitForSeconds(spawnWaitTime);
-        spawnEnemyOn = true;
-    }
-
-    private IEnumerator WavePowerUpRoutine()
-    {
-        yield return new WaitForSeconds(waveWaitTime);
-        waveSpawnOn = true;
+            spawnEnemyOn = true;
+            //Debug.Log("Spawning wave " + waveNumber);
     }
 
 }

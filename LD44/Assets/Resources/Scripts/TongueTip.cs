@@ -40,11 +40,18 @@ public class TongueTip : MonoBehaviour
                 isTongueReturning = true;
             }
 
+            if (Input.GetButtonUp("Fire1"))
+            {
+                isTongueExtending = false;
+                isTongueReturning = true;
+            }
+
             if (isTongueReturning && transform.position == returnPosition)
             {
                 isTongueReturning = false;
                 isPlayerTongueing = false;
                 player.GetComponentInChildren<LineRenderer>().positionCount = 0;
+                        player.spriteRenderer.sprite = ResourceLoader.instance.mimicClosedSprite;
             }
         }
         else

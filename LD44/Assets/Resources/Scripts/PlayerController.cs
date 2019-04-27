@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private LineRenderer tongueLine;
     private Vector3 mousePosition;
     private TongueTip tip;
+    public SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
         tip = GetComponentInChildren<TongueTip>();
         tongueLine.startWidth = 0.5f;
         tongueLine.endWidth = tongueLine.startWidth;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -49,7 +51,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-
             tongueLine.positionCount = 2;
             tongueLine.SetPosition(0, transform.position);
             tongueLine.SetPosition(1, tip.transform.position);
@@ -78,6 +79,8 @@ public class PlayerController : MonoBehaviour
 
     private void FireTongue()
     {
+        spriteRenderer.sprite = ResourceLoader.instance.mimicOpenedSprite;
+
         //TODO: Get the tongue to shoot out (I suggest using tongueLine)
         // 1. tongue goes towards mouse position
         mousePosition = (Vector3)GetCurrentMousePosition();
