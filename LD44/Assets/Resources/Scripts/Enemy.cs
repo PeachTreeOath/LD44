@@ -42,21 +42,25 @@ public class Enemy : MonoBehaviour
         else
         {
             //Walk if not grabbed
-
-            if (target == null)
-            {
-                target = FindClosestGoldPile();
-            }
-            else
-            {
-
-                Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
-                Vector2 directionNormalized = direction.normalized;
-                Vector2 velocity = new Vector2(directionNormalized.x * walkSpeed, directionNormalized.y * walkSpeed);
-                GetComponent<Rigidbody2D>().velocity = -velocity;
-            }
-
+            MoveTowardNearestGoldPile();
+            
         }
+    }
+    private void MoveTowardNearestGoldPile()
+    {
+        if (target == null)
+        {
+            target = FindClosestGoldPile();
+        }
+        else
+        {
+
+            Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
+            Vector2 directionNormalized = direction.normalized;
+            Vector2 velocity = new Vector2(directionNormalized.x * walkSpeed, directionNormalized.y * walkSpeed);
+            GetComponent<Rigidbody2D>().velocity = -velocity;
+        }
+
     }
 
     private GameObject FindClosestGoldPile()
