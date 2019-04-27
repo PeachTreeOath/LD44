@@ -15,6 +15,7 @@ public class SpawnManager : MonoBehaviour
     private int enemyAmountMax = 3;
     private int enemyAmount = 0;
     private int enemyTypeMaxRange = 0;
+    private int enemiesDead;
 
     private int randomSpawnPointNum;
     private int randomEnemyType;
@@ -28,7 +29,9 @@ public class SpawnManager : MonoBehaviour
 
     // timer
     public float spawnDelay = 3.0f;
-    public float timer = 0.0f;
+    public float spawnTimer = 0.0f;
+    public float waveDelay = 0.0f;
+    public float waveTimer = 5.0f;
 
     private void Awake()
     {
@@ -38,19 +41,21 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inWave = true;
+      
     }
 
     private void Update()
     {
         DestroyEnemyCount();
-        timer += Time.deltaTime;
+        spawnTimer += Time.deltaTime;
 
-        if (timer >= spawnDelay)
+        if (spawnTimer >= spawnDelay)
         {
             SpawnEnemy();
-            timer = 0.0f;
+            spawnTimer = 0.0f;
         }
+
+        StartNewWave();
     }
 
     private void SpawnEnemy()
@@ -63,10 +68,12 @@ public class SpawnManager : MonoBehaviour
             // Spawning enemies in random locations
             Instantiate(enemyTypes[randomEnemyType], allChildren[randomSpawnPointNum].transform.position, Quaternion.identity);
             enemyAmount++;
+            Debug.Log("Number of enemies: " + enemyAmount);
             if (enemyAmount == enemyAmountMax)
             {
                 spawnEnemyOn = false;
             }
+
         }
 
     }
@@ -76,14 +83,29 @@ public class SpawnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             enemyAmount = 0;
-            WaveSpawn();
+            enemiesDead = enemyAmountMax;
             Debug.Log("Enemy amount = " + enemyAmount);
+        }
+    }
+
+    private void StartNewWave()
+    {
+        if (enemiesDead == enemyAmountMax)
+        {
+            waveTimer -= Time.deltaTime;
+            Debug.Log("Wave Delay countdown = " + waveTimer);
+
+            if (waveTimer <= waveDelay)
+            {
+                WaveSpawn();
+            }
         }
     }
 
     private void WaveSpawn()
     { 
-            enemyAmountMax *= 2;
+
+            enemyAmountMax *= 2;            
             waveNumber++;
             spawnEnemyOn = true;
             //Debug.Log("Spawning wave " + waveNumber);

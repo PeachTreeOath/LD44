@@ -134,3 +134,4 @@ MonoBehaviour:
   walkSpeed: 0.5
   throwSpeed: 50
   moveTowardsSpeed: 10
+  hasGold: 0

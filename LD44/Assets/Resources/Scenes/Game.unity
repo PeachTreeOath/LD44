@@ -120,59 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &902364428
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 902364430}
-  - component: {fileID: 902364429}
-  m_Layer: 0
-  m_Name: Treasures
-  m_TagString: gold_pile
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &902364429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902364428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 271d75ec60ebea147b46ee2ccd8d0f39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showGizmos: 0
-  showTreasures: 0
-  treasurePrefabs:
-  - {fileID: 6543111200424581053, guid: ecf6348355bb01d41b5cc6e124d32072, type: 3}
-  - {fileID: 3445224108034764859, guid: d943d19b9b9bcbc4f8681c052e54831d, type: 3}
-  treasureContainer: {fileID: 902364428}
-  maxTreasures: 10
-  fieldWidth: 4
-  fieldHeight: 4
-  distanceBetweenTreasures: 1
---- !u!4 &902364430
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902364428}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1365485503 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7010237044064149058, guid: 94cf2812907571745a87f10976c451fc,
@@ -714,6 +661,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27c6ee1d5988343068e995171d38416c, type: 3}
+--- !u!1001 &6440401062768163381
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6440401062956418873, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_Name
+      value: Treasures
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440401062956418875, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440401062956418875, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440401062956418875, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440401062956418875, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440401062956418875, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440401062956418875, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440401062956418875, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440401062956418875, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440401062956418875, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440401062956418875, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440401062956418875, guid: 7c26ba3f12711404b8f58a4148b7217d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c26ba3f12711404b8f58a4148b7217d, type: 3}
 --- !u!1001 &8367029955989299275
 PrefabInstance:
   m_ObjectHideFlags: 0
