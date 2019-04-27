@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6440401062956418873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6440401062956418875}
+  - component: {fileID: 6440401062956418872}
+  m_Layer: 0
+  m_Name: Treasures
+  m_TagString: gold_pile
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6440401062956418875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440401062956418873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6440401062956418872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440401062956418873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271d75ec60ebea147b46ee2ccd8d0f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGizmos: 0
+  showTreasures: 0
+  treasurePrefabs:
+  - {fileID: 6543111200424581053, guid: ecf6348355bb01d41b5cc6e124d32072, type: 3}
+  - {fileID: 3445224108034764859, guid: d943d19b9b9bcbc4f8681c052e54831d, type: 3}
+  treasureContainer: {fileID: 6440401062956418873}
+  maxTreasures: 10
+  fieldWidth: 4
+  fieldHeight: 4
+  distanceBetweenTreasures: 1
