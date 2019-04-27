@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
         {
             //Walk if not grabbed
             MoveTowardNearestGoldPile();
-            
+
         }
     }
     private void MoveTowardNearestGoldPile()
@@ -82,6 +82,16 @@ public class Enemy : MonoBehaviour
         }
         return closest;
     }
+
+    void FixedUpdate()
+    {
+        previousPositions.Enqueue(body.position - (Vector2)previousPosition);
+        if (previousPositions.Count > 5)
+            previousPositions.Dequeue();
+
+        previousPosition = body.position;
+    }
+
     public void StartGrab()
     {
         isGrabbed = true;
