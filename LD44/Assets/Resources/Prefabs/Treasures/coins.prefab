@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1019488239272182020}
   - component: {fileID: 5052891039123688673}
   - component: {fileID: 2869156244699232831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.000000834465, y: -0.007465899}
