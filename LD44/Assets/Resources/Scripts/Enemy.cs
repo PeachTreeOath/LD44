@@ -19,6 +19,13 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        MoveTowardClosestGoldPile();
+
+    }
+
+    private void MoveTowardClosestGoldPile()
+    {
         if (target == null)
         {
             target = FindClosestGoldPile();
@@ -31,10 +38,9 @@ public class Enemy : MonoBehaviour
             Vector2 velocity = new Vector2(directionNormalized.x * speed, directionNormalized.y * speed);
             GetComponent<Rigidbody2D>().velocity = -velocity;
         }
-        
     }
 
-    public GameObject FindClosestGoldPile()
+    private GameObject FindClosestGoldPile()
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("gold_pile");
