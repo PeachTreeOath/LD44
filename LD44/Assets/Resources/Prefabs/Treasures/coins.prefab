@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2869156244699232831}
   m_Layer: 8
   m_Name: coins
-  m_TagString: Untagged
+  m_TagString: gold_pile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
