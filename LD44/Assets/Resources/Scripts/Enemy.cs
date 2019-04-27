@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
         body = GetComponentInChildren<Rigidbody2D>();
         previousPosition = body.position;
     }
@@ -118,6 +117,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("releaseGrab");
 
         isGrabbed = false;
+        isThrown = true;
 
         Vector3 totalVelocity = Vector3.zero;
 
