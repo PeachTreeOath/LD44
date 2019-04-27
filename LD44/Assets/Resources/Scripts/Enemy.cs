@@ -128,4 +128,11 @@ public class Enemy : MonoBehaviour
             body.velocity = (totalVelocity / previousPositions.Count) * throwSpeed;
     }
 
+
+    public OnTriggerStay2D(Collider2D otherCollider)
+    {
+        //TODO grab gold.
+
+        //TODO deposit gold
+    }
 }
