@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     private Vector3 previousPosition;
 
     //AI states
-    private bool hasGold = false;
+    public bool hasGold = false;
 
     // Use this for initialization
     void Start()
@@ -58,24 +58,6 @@ public class Enemy : MonoBehaviour
             MoveTowardNearestObjectWithTag("door");
 
         }
-    }
-    private void MoveTowardNearestGoldPile()
-    {
-        if (target == null)
-        {
-            target = FindClosestGoldPile();
-        }
-        
-
-        if (target != null)
-        {
-
-            Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
-            Vector2 directionNormalized = direction.normalized;
-            Vector2 velocity = new Vector2(directionNormalized.x * walkSpeed, directionNormalized.y * walkSpeed);
-            GetComponent<Rigidbody2D>().velocity = -velocity;
-        }
-
     }
 
     private void MoveTowardNearestObjectWithTag(string tag)
