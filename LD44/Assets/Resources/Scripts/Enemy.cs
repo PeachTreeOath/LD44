@@ -13,17 +13,45 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("gold_pile");
+        target = FindClosestGoldPile();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Range = Vector2.Distance(transform.position, target.transform.position);
-        Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
-        Vector2 directionNormalized = direction.normalized;
-        Vector2 velocity = new Vector2(directionNormalized.x * speed, directionNormalized.y * speed);
-        GetComponent<Rigidbody2D>().velocity = -velocity;
+        if (target == null)
+        {
+            target = FindClosestGoldPile();
+        }
+        else
+        {
+
+            Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
+            Vector2 directionNormalized = direction.normalized;
+            Vector2 velocity = new Vector2(directionNormalized.x * speed, directionNormalized.y * speed);
+            GetComponent<Rigidbody2D>().velocity = -velocity;
+        }
+        
+    }
+
+    public GameObject FindClosestGoldPile()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("gold_pile");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
     }
 
 
