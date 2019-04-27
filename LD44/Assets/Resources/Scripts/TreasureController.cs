@@ -6,6 +6,7 @@ using UnityEngine;
 public class TreasureController : MonoBehaviour
 {
     public static TreasureController instance;
+    public event System.Action<int> CountChangedEvent;
 
     #region Editor Properties
 
@@ -40,17 +41,23 @@ public class TreasureController : MonoBehaviour
         GenerateTreasure();
     }
 
+    private void Update()
+    {
+        /* For testing only
+        if(Input.GetMouseButtonUp(0))
+        {
+            GameObject treasure = ClickSelect();
+            TakeTreasure(treasure);
+        }
+        */
+    }
+
     private void OnValidate()
     {
         if (showTreasures)
             GenerateTreasure();
         else
             CleanUpTreasure();
-    }
-
-    private void Update()
-    {
-
     }
 
     private void OnDrawGizmos()
@@ -73,16 +80,37 @@ public class TreasureController : MonoBehaviour
 
     #region Public Methods
 
-    public GameObject PlaceTreasure(Vector3 location)
-    {       
-        GameObject treasure = Instantiate(treasurePrefabs[Random.Range(0,treasurePrefabs.Length)], location, Quaternion.identity);
-        treasure.transform.parent = treasureContainer.transform;
-        return treasure;
+    public void PlaceTreasure(GameObject treasure, Vector2 location)
+    {
+        treasures.Add(new KeyValuePair<Vector2, GameObject>(location, treasure));
+        CountChangedEvent?.Invoke(treasures.Count);
+    }
+
+    public GameObject TakeTreasure(GameObject treasure)
+    {
+        KeyValuePair<Vector2, GameObject> found = treasures.FirstOrDefault(obj => obj.Value == treasure);
+
+        if (found.Key != null)
+        {
+            treasures.Remove(found);
+            found.Value.SetActive(false);
+        }
+
+        CountChangedEvent?.Invoke(treasures.Count);
+
+        return found.Value;
     }
 
     #endregion Public Methods
 
     #region Private Methods
+
+    private GameObject PlaceTreasure(Vector3 location)
+    {
+        GameObject treasure = Instantiate(treasurePrefabs[Random.Range(0, treasurePrefabs.Length)], location, Quaternion.identity);
+        treasure.transform.parent = treasureContainer.transform;
+        return treasure;
+    }
 
     private void GenerateTreasure()
     {
@@ -112,6 +140,14 @@ public class TreasureController : MonoBehaviour
         }
     }
 
+    #endregion Private Methods
+
+    #region Tests
+
+    /// <summary>
+    /// For Testing Only
+    /// </summary>
+    /// <returns></returns>
     private GameObject ClickSelect()
     {
         //Converting Mouse Pos to 2D (vector2) World Pos
@@ -131,5 +167,5 @@ public class TreasureController : MonoBehaviour
         else return null;
     }
 
-    #endregion Private Methods
+    #endregion Tests
 }
