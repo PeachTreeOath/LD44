@@ -20,8 +20,7 @@ public class ThrowableObject : MonoBehaviour
         previousPosition = body.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (isGrabbed)
         {
