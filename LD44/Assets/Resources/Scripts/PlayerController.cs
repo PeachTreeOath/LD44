@@ -49,11 +49,16 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+
             tongueLine.positionCount = 2;
             tongueLine.SetPosition(0, transform.position);
             tongueLine.SetPosition(1, tip.transform.position);
         }
 
+        if (Input.GetButtonUp("Fire1"))
+        {
+            ReleaseTonguedEnemy();
+        }
     }
 
     private Vector3? GetCurrentMousePosition()
@@ -81,5 +86,12 @@ public class PlayerController : MonoBehaviour
         tip.isPlayerTongueing = true;
         tip.isTongueExtending = true;
         // 3. if the tongue tip touches an enemy, call something to start the fishing minigame (this can be a blank method for now)
+    }
+
+    private void ReleaseTonguedEnemy()
+    {
+        Debug.Log("releasetonguedenemy");
+
+        tip.ReleaseEnemy();
     }
 }

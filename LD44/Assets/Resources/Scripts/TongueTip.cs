@@ -12,7 +12,7 @@ public class TongueTip : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 returnPosition;
     private PlayerController player;
-    private Transform tonguedEnemy;
+    private Enemy tonguedEnemy;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -65,6 +65,14 @@ public class TongueTip : MonoBehaviour
         targetPosition = target;
     }
 
+    public void ReleaseEnemy()
+    {
+                Debug.Log("ReleaseEnemy");
+
+        tonguedEnemy.ReleaseGrab();
+        tonguedEnemy = null;
+    }
+
     /// <summary>
     /// Sent when another object enters a trigger collider attached to this
     /// object (2D physics only).
@@ -72,9 +80,13 @@ public class TongueTip : MonoBehaviour
     /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
-        isTongueExtending = false;
-        isTongueReturning = true;
-        isEnemyTongued = true;
-        tonguedEnemy = other.transform;
+        tonguedEnemy = other.GetComponentInChildren<Enemy>();
+        if (tonguedEnemy)
+        {
+            tonguedEnemy.StartGrab();
+            isTongueExtending = false;
+            isTongueReturning = true;
+            isEnemyTongued = true;
+        }
     }
 }
