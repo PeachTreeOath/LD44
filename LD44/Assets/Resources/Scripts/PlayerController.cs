@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
         body.MovePosition(transform.position + new Vector3(hAxis * moveDistance, vAxis * moveDistance, 0));
 
         // Firing
-
         if (!tip.isPlayerTongueing)
         {
             if (Input.GetButtonDown("Fire1"))
@@ -54,7 +53,7 @@ public class PlayerController : MonoBehaviour
             tongueLine.SetPosition(0, transform.position);
             tongueLine.SetPosition(1, tip.transform.position);
         }
-        // }
+
     }
 
     private Vector3? GetCurrentMousePosition()
