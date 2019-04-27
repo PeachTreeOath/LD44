@@ -5,7 +5,9 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] spawnPoints;
+    private GameObject spawnPointParent;
+
+    Transform[] allChildren;
 
     [SerializeField]
     private GameObject[] enemyTypes;
@@ -28,6 +30,11 @@ public class SpawnManager : MonoBehaviour
     private bool waveSpawnOn = true;
     private int waveNumber = 1;
 
+    private void Awake()
+    {
+        allChildren = spawnPointParent.GetComponentsInChildren<Transform>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,13 +50,13 @@ public class SpawnManager : MonoBehaviour
     {
         if (spawnEnemyOn)
         {
-            randomSpawnPointNum = Random.Range(0, spawnPoints.Length);
+            randomSpawnPointNum = Random.Range(0, allChildren.Length);
             randomEnemyType = Random.Range(0, enemyTypeMaxRange);
             //for (int i = 0; i < enemyAmount; i++)
             //{
             //   Instantiate(enemyTypes[randomEnemyType], spawnPoints[randomSpawnPointNum].transform.position, Quaternion.identity);
             //}
-            Instantiate(enemyTypes[randomEnemyType], spawnPoints[randomSpawnPointNum].transform.position, Quaternion.identity);
+            Instantiate(enemyTypes[randomEnemyType], allChildren[randomSpawnPointNum].transform.position, Quaternion.identity);
             spawnEnemyOn = false;
             //StartCoroutine(SpawnPowerUpRoutine());
         }
@@ -61,7 +68,7 @@ public class SpawnManager : MonoBehaviour
         if (waveSpawnOn)
         {
             SpawnEnemy();
-            enemyAmount++;
+            //enemyAmount++;
         }
 
         if (enemyAmount == 2)
