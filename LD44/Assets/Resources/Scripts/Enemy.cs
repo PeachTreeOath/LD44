@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     private GameObject target;
+    private string targetTag;
     private float Range = 10f;
     public float walkSpeed = 10f;
 
@@ -94,15 +95,10 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
         body = GetComponentInChildren<Rigidbody2D>();
         previousPosition = body.position;
     }
 
-    void Awake()
-    {
-        //target = GameObject.FindGameObjectWithTag("gold_pile");
-    }
 
     // Update is called once per frame
     void Update()
@@ -132,9 +128,10 @@ public class Enemy : MonoBehaviour
 
     private void MoveTowardNearestObjectWithTag(string tag)
     {
-        if (target == null)
+        if (target == null || !targetTag.Equals(tag))
         {
             target = FindClosestObjectWithTag(tag);
+            targetTag = tag;
         }
 
 
@@ -188,6 +185,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("releaseGrab");
 
         isGrabbed = false;
+        isThrown = true;
 
         Vector3 totalVelocity = Vector3.zero;
 

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - gold_pile
+  - door
   layers:
   - Default
   - TransparentFX
