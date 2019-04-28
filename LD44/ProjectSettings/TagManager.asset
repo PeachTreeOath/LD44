@@ -46,9 +46,12 @@ TagManager:
   - name: Treasure
     uniqueID: 3558904681
     locked: 0
-  - name: Tongue
-    uniqueID: 1717646953
+  - name: Enemy
+    uniqueID: 3846424387
     locked: 0
   - name: Player
     uniqueID: 2723898039
+    locked: 0
+  - name: Tongue
+    uniqueID: 1717646953
     locked: 0

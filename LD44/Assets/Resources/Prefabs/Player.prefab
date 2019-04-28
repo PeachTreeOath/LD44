@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 3687047366714187592}
   - component: {fileID: 6252520923040624903}
   - component: {fileID: 2220976388310479011}
-  - component: {fileID: 836631394981164332}
+  - component: {fileID: 4691491168581453746}
   m_Layer: 9
   m_Name: TongueTip
   m_TagString: Untagged
@@ -154,7 +154,7 @@ Transform:
   m_GameObject: {fileID: 2647033156161862363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 397755334057970899}
   m_RootOrder: 1
@@ -196,12 +196,12 @@ SpriteRenderer:
   m_SortingLayerID: 1717646953
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0.95380974, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4726f8f0be67fcf43b7614855fe02bec, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.39333335, y: 0.74666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -224,7 +224,7 @@ MonoBehaviour:
   isTongueReturning: 0
   isPlayerTongueing: 0
   isEnemyTongued: 0
---- !u!58 &836631394981164332
+--- !u!58 &4691491168581453746
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,9 +237,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0015335083, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08083118
+  m_Radius: 0.19666667
 --- !u!1 &6531441229417742954
 GameObject:
   m_ObjectHideFlags: 0

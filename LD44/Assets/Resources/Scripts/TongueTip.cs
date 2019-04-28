@@ -21,6 +21,7 @@ public class TongueTip : MonoBehaviour
     void Start()
     {
         player = GetComponentInParent<PlayerController>();
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -60,6 +61,7 @@ public class TongueTip : MonoBehaviour
                 isTongueReturning = false;
                 isPlayerTongueing = false;
                 //player.GetComponentInChildren<LineRenderer>().positionCount = 0;
+                GetComponent<SpriteRenderer>().enabled = false;
                 player.spriteRenderer.sprite = ResourceLoader.instance.mimicClosedSprite;
             }
         }
