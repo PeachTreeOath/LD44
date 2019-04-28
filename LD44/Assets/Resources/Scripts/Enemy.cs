@@ -206,6 +206,12 @@ public class Enemy : MonoBehaviour
         //TODO deposit gold
     }
 
+
+    public void OnTriggerExit2D(Collider2D otherCollider)
+    {
+        
+    }
+
     void seekingGoldBehavior()
     {
 
