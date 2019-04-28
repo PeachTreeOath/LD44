@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
 
     public float speedToRecoverFromThrow = 1f;
 
+	public GameObject hasMoneyIcon;
+
     private bool isGrabbed;
     private bool isThrown;
     private bool isStunned;
@@ -129,6 +131,9 @@ public class Enemy : MonoBehaviour
     {
         body = GetComponentInChildren<Rigidbody2D>();
         previousPosition = body.position;
+
+		// The Money icon should be off by default
+		hasMoneyIcon.SetActive(false);
     }
 
 
@@ -169,6 +174,8 @@ public class Enemy : MonoBehaviour
             //Walk if not grabbed
             MoveTowardNearestObjectWithTag("door");
 
+			// If this unit has gold, turn on the hasMoneyIcon
+			hasMoneyIcon.SetActive(true);
         }
     }
 
