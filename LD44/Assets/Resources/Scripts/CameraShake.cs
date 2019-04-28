@@ -59,10 +59,7 @@ public class CameraShake : Singleton<CameraShake>
             {
                 shake = 1.0f;
             }
-            Debug.Log("Shake: " + shake);
-            //angleOffset = angle * shake * Random.Range(-1, 1);
-            //xOffset = offset * shake * Random.Range(-1, 1);
-            //yOffset = offset * shake * Random.Range(-1, 1);
+            //Debug.Log("Shake: " + shake);
             angleOffset = angle * shake * Mathf.PerlinNoise(test - 1, test + 1) * Random.Range(-1, 1);
             xOffset = offset * shake * Mathf.PerlinNoise(test - 2f, test + 2f) * Random.Range(-1, 1);
             yOffset = offset * shake * Mathf.PerlinNoise(test - 3f, test + 3f) * Random.Range(-1, 1);
