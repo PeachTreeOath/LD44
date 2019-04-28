@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private float Range = 10f;
     public float walkSpeed = 10f;
     public float timeToGrabGold = 3f;
+    public float timeToRecalcTarget = 3f;
 
     public float throwSpeed;
     public float moveTowardsSpeed;
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour
     
     public bool hasGold = false;
     private float secondsGrabbingGold = 0f;
+    private float secondsMovingToTarget = 0f;
     private GameObject heldTreasure = null;
 
     public enum EnemyState
@@ -130,20 +132,22 @@ public class Enemy : MonoBehaviour
 
     private void MoveTowardNearestObjectWithTag(string tag)
     {
-        if (target == null || !targetTag.Equals(tag))
+        if (target == null || !targetTag.Equals(tag) || secondsMovingToTarget >= timeToRecalcTarget)
         {
             target = FindClosestObjectWithTag(tag);
             targetTag = tag;
+            secondsMovingToTarget = 0f;
         }
 
 
         if (target != null)
         {
-
+            
             Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
             Vector2 directionNormalized = direction.normalized;
             Vector2 velocity = new Vector2(directionNormalized.x * walkSpeed, directionNormalized.y * walkSpeed);
             GetComponent<Rigidbody2D>().velocity = -velocity;
+            secondsMovingToTarget += Time.deltaTime;
         }
 
     }
