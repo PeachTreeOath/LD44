@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour
         }
         else if (isStunned)
         {
-
+            
         }
         else if (!hasGold)
         {
@@ -261,7 +261,7 @@ public class Enemy : MonoBehaviour
         Enemy otherEnemy = other.gameObject.GetComponent<Enemy>();
         if (otherEnemy)
         {
-            Vector3 newVelocity = body.velocity + otherEnemy.body.velocity;
+            Vector3 newVelocity = body.velocity - otherEnemy.body.velocity;
             Debug.LogWarning("COLLISION AT " + newVelocity.magnitude);
             if (newVelocity.magnitude > minimumCollisionVelocityForDeath)
             {
