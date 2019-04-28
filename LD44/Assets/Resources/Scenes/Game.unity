@@ -484,23 +484,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 337093909, guid: 879754c2c384f481ca5de169b4935d4b, type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 337093909, guid: 879754c2c384f481ca5de169b4935d4b, type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 337093909, guid: 879754c2c384f481ca5de169b4935d4b, type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 337093909, guid: 879754c2c384f481ca5de169b4935d4b, type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 337093909, guid: 879754c2c384f481ca5de169b4935d4b, type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 337093909, guid: 879754c2c384f481ca5de169b4935d4b, type: 3}
+      propertyPath: m_text
+      value: 3 enemies left
       objectReference: {fileID: 0}
     - target: {fileID: 2119804866, guid: 879754c2c384f481ca5de169b4935d4b, type: 3}
       propertyPath: m_textInfo.characterCount
