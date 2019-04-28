@@ -16,13 +16,16 @@ public class Enemy : MonoBehaviour
     public float throwSpeed;
     public float moveTowardsSpeed;
 
+    public float speedToRecoverFromThrow = 1f;
+
     private bool isGrabbed;
     private bool isThrown;
+    private bool isStunned;
     [HideInInspector] public Rigidbody2D body;
     private Queue<Vector3> previousPositions = new Queue<Vector3>();
     private Vector3 previousPosition;
 
-    public bool hasGold = false;
+    private bool hasGold = false;
     private float secondsGrabbingGold = 0f;
     private float secondsMovingToTarget = 0f;
     private GameObject heldTreasure = null;
@@ -116,6 +119,14 @@ public class Enemy : MonoBehaviour
             body.position = newPos;
         }
         else if (isThrown)
+        {
+            if (body.velocity.magnitude <= speedToRecoverFromThrow)
+            {
+                isStunned = true;
+                isThrown = false;
+            }
+        }
+        else if (isStunned)
         {
 
         }
