@@ -89,7 +89,7 @@ public class CameraShake : Singleton<CameraShake>
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            trauma += 0.3f;
+            trauma += 0.5f;
         }
     }
 
