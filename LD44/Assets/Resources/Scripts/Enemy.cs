@@ -155,7 +155,7 @@ public class Enemy : MonoBehaviour
             if (secondsStunned >= timeInStun)
             {
                 isStunned = false;
-                
+
             }
         }
         else if (!hasGold)
@@ -300,6 +300,7 @@ public class Enemy : MonoBehaviour
             if (newVelocity.magnitude > minimumCollisionVelocityForDeath)
             {
                 Die();
+                CameraShake.instance.trauma += 0.2f;
             }
         }
         else
@@ -308,6 +309,7 @@ public class Enemy : MonoBehaviour
             if (body.velocity.magnitude > minimumCollisionVelocityForDeath)
             {
                 Die();
+                CameraShake.instance.trauma += 0.2f;
             }
         }
     }
