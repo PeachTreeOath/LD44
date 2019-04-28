@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 262800564770152012}
   - component: {fileID: 5571133407389126507}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -444,7 +444,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6a1e3c7907dfb0c4b92376d07909e67b, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -540,3 +540,4 @@ MonoBehaviour:
   point1: {fileID: 5571133407786867672}
   point2: {fileID: 5571133408135751966}
   point3: {fileID: 5571133408008933078}
+  tipAttachPoint: {x: 0, y: 0, z: 0}
