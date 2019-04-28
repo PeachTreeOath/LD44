@@ -211,10 +211,10 @@ public class Enemy : MonoBehaviour
         //TODO deposit gold
     }
 
-
+    // Only works against the IntangibleWallTrigger layer
     public void OnTriggerExit2D(Collider2D otherCollider)
     {
-        
+        gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     void seekingGoldBehavior()
