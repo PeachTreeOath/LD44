@@ -149,9 +149,9 @@ public class TreasureController : MonoBehaviour
     {
         foreach (Transform child in treasureContainer.transform)
         {
-            if (Application.isEditor)
-                UnityEditor.EditorApplication.delayCall += () => { if (child != null) { DestroyImmediate(child.gameObject); } };
-            else
+            //if (Application.isEditor)
+            //    UnityEditor.EditorApplication.delayCall += () => { if (child != null) { DestroyImmediate(child.gameObject); } };
+            //else
                 Destroy(child.gameObject);
 
         }
