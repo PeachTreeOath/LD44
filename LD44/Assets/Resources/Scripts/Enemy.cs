@@ -199,7 +199,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public OnTriggerStay2D(Collider2D otherCollider)
+    public void OnTriggerStay2D(Collider2D otherCollider)
     {
         //TODO grab gold.
 
