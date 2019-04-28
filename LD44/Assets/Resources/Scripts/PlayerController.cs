@@ -9,10 +9,11 @@ public class PlayerController : Singleton<PlayerController>
     public float moveSpeed;
 
     private Rigidbody2D body;
-    public LineRenderer tongueLine;
+    [HideInInspector] public LineRenderer tongueLine;
     private Vector3 mousePosition;
     [HideInInspector] public TongueTip tip;
-    [HideInInspector] public SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +21,10 @@ public class PlayerController : Singleton<PlayerController>
         body = GetComponentInChildren<Rigidbody2D>();
         tongueLine = GetComponentInChildren<LineRenderer>();
         tip = GetComponentInChildren<TongueTip>();
+        anim = GetComponent<Animator>();
         tongueLine.startWidth = 0.5f;
         tongueLine.endWidth = tongueLine.startWidth;
         tongueLine.enabled = false;
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -39,6 +40,23 @@ public class PlayerController : Singleton<PlayerController>
         // If moving diagonally, make sure to account for reduced speed
         if (hAxis != 0 && vAxis != 0)
             moveDistance *= 0.7071f;
+        switch (hAxis)
+        {
+            case 1:
+            spriteRenderer.flipX = false;
+            break;
+            case -1:
+            spriteRenderer.flipX = true;
+            break;
+        }
+        if (hAxis != 0 || vAxis != 0)
+        {
+            anim.SetBool("isMoving",true);
+        }
+        else
+        {
+            anim.SetBool("isMoving",false);
+        }
 
         body.MovePosition(transform.position + new Vector3(hAxis * moveDistance, vAxis * moveDistance, 0));
 
