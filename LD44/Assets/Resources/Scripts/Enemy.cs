@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public float walkSpeed = 10f;
     public float timeToGrabGold = 3f;
     public float timeToRecalcTarget = 3f;
+    public float timeInStun = 3f;
 
     public float throwSpeed;
     public float moveTowardsSpeed;
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
     private bool hasGold = false;
     private float secondsGrabbingGold = 0f;
     private float secondsMovingToTarget = 0f;
+    private float secondsStunned = 0f;
     private GameObject heldTreasure = null;
 
     public enum EnemyState
@@ -124,11 +126,17 @@ public class Enemy : MonoBehaviour
             {
                 isStunned = true;
                 isThrown = false;
+                secondsStunned = 0f;
             }
         }
         else if (isStunned)
         {
-            
+            secondsStunned += Time.deltaTime;
+            if (secondsStunned >= timeInStun)
+            {
+                isStunned = false;
+                
+            }
         }
         else if (!hasGold)
         {
@@ -284,6 +292,7 @@ public class Enemy : MonoBehaviour
         SpawnManager.instance.NotifyEnemyDead();
         Destroy(gameObject);
         //TODO: Spawn corpse
+        //Todo: drop gold
     }
 
     // Only works against the IntangibleWallTrigger layer
