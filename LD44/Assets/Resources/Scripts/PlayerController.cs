@@ -8,7 +8,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public float moveSpeed;
     public float knockbackDuration = .5f;
-    public float knockbackSpeed = 1f;
+    public float knockbackSpeed = 5f;
 
     private Rigidbody2D body;
     [HideInInspector] public LineRenderer tongueLine;
@@ -16,6 +16,11 @@ public class PlayerController : Singleton<PlayerController>
     [HideInInspector] public TongueTip tip;
     public SpriteRenderer spriteRenderer;
     private Animator anim;
+
+    private float knockbackTimer = 0f;
+    private bool isBeingKnockedBack = false;
+
+    private bool controlsEnabled = true;
 
     // Start is called before the first frame update
     void Start()
@@ -35,53 +40,71 @@ public class PlayerController : Singleton<PlayerController>
         // if (!tip.isPlayerTongueing)
         // {
         // Movement
-        float moveDistance = moveSpeed * Time.deltaTime;
-        float hAxis = Input.GetAxisRaw("Horizontal");
-        float vAxis = Input.GetAxisRaw("Vertical");
 
-        // If moving diagonally, make sure to account for reduced speed
-        if (hAxis != 0 && vAxis != 0)
-            moveDistance *= 0.7071f;
-        switch (hAxis)
+        if (controlsEnabled)
         {
-            case 1:
-            spriteRenderer.flipX = false;
-            anim.SetBool("isLeft",false);
-            break;
-            case -1:
-            spriteRenderer.flipX = true;
-            anim.SetBool("isLeft",true);
-            break;
-        }
-        if (hAxis != 0 || vAxis != 0)
-        {
-            anim.SetBool("isMoving",true);
-        }
-        else
-        {
-            anim.SetBool("isMoving",false);
-        }
 
-        body.MovePosition(transform.position + new Vector3(hAxis * moveDistance, vAxis * moveDistance, 0));
+            float moveDistance = moveSpeed * Time.deltaTime;
+            float hAxis = Input.GetAxisRaw("Horizontal");
+            float vAxis = Input.GetAxisRaw("Vertical");
 
-        // Firing
-        if (!tip.isPlayerTongueing)
-        {
-            if (Input.GetButtonDown("Fire1"))
+            // If moving diagonally, make sure to account for reduced speed
+            if (hAxis != 0 && vAxis != 0)
+                moveDistance *= 0.7071f;
+            switch (hAxis)
             {
-                FireTongue();
+                case 1:
+                    spriteRenderer.flipX = false;
+                    anim.SetBool("isLeft", false);
+                    break;
+                case -1:
+                    spriteRenderer.flipX = true;
+                    anim.SetBool("isLeft", true);
+                    break;
             }
-        }
-        else
-        {
-            //tongueLine.positionCount = 2;
-            //tongueLine.SetPosition(0, transform.position);
-            //tongueLine.SetPosition(1, tip.transform.position);
+            if (hAxis != 0 || vAxis != 0)
+            {
+                anim.SetBool("isMoving", true);
+            }
+            else
+            {
+                anim.SetBool("isMoving", false);
+            }
+
+            body.MovePosition(transform.position + new Vector3(hAxis * moveDistance, vAxis * moveDistance, 0));
+
+            // Firing
+            if (!tip.isPlayerTongueing)
+            {
+                if (controlsEnabled && Input.GetButtonDown("Fire1"))
+                {
+                    FireTongue();
+                }
+            }
+            else
+            {
+                //tongueLine.positionCount = 2
+
+                //tongueLine.SetPosition(0, transform.position);
+                //tongueLine.SetPosition(1, tip.transform.position);
+            }
+
+            if (Input.GetButtonUp("Fire1"))
+            {
+                ReleaseTonguedEnemy();
+            }
+
         }
 
-        if (Input.GetButtonUp("Fire1"))
+        if (isBeingKnockedBack && knockbackTimer >= knockbackDuration)
         {
-            ReleaseTonguedEnemy();
+            knockbackTimer = 0f;
+            isBeingKnockedBack = false;
+            controlsEnabled = true;
+        }
+        else if (isBeingKnockedBack)
+        {
+            knockbackTimer += Time.deltaTime;
         }
     }
 
@@ -132,6 +155,10 @@ public class PlayerController : Singleton<PlayerController>
             knockbackDirection = knockbackDirection.normalized;
             Vector2 knockbackVector = knockbackDirection * knockbackSpeed;
 
+            controlsEnabled = false;
+            anim.SetBool("isMoving", false);
+            knockbackTimer = 0f;
+            isBeingKnockedBack = true;
             body.AddForce(knockbackVector, ForceMode2D.Impulse);
 
         }
