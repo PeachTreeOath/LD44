@@ -7,6 +7,8 @@ public class PlayerController : Singleton<PlayerController>
 {
 
     public float moveSpeed;
+    public float knockbackDuration = .5f;
+    public float knockbackSpeed = 1f;
 
     private Rigidbody2D body;
     private LineRenderer tongueLine;
@@ -96,5 +98,19 @@ public class PlayerController : Singleton<PlayerController>
         Debug.Log("releasetonguedenemy");
 
         tip.ReleaseEnemy();
+    }
+
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        Enemy otherEnemy = other.gameObject.GetComponent<Enemy>();
+        if (otherEnemy)
+        {
+            Vector2 knockbackDirection = body.position - otherEnemy.body.position;
+            knockbackDirection = knockbackDirection.normalized;
+            Vector2 knockbackVector = knockbackDirection * knockbackSpeed;
+
+            body.AddForce(knockbackVector, ForceMode2D.Impulse);
+
+        }
     }
 }
