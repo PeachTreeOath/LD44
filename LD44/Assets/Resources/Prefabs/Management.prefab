@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a938f62a8d094c21a601d1a1a9a606f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStarted: 0
-  startScreen: 1
 --- !u!114 &7394523746968729967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +73,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPointParent: {fileID: 0}
   enemyTypes:
-  - {fileID: 960242478692454744, guid: 25807d1e0cd7fb149b34cb98a990dbc5, type: 3}
+  - {fileID: 9060824101604871431, guid: 5da755f04536a6347af725551ecf461a, type: 3}
+  - {fileID: 777326490716732763, guid: 0af0924f398c52f448f00d67ab425b80, type: 3}
+  - {fileID: 2318720308379033800, guid: 116ed6c5d2481e743acc3550268d9418, type: 3}
+  - {fileID: 3048728808124711267, guid: 49a62de156d17884c900336833d13dae, type: 3}
   spawnEnemyOn: 1
   inWave: 0
   spawnDelay: 3

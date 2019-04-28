@@ -11,10 +11,11 @@ public class PlayerController : Singleton<PlayerController>
     public float knockbackSpeed = 1f;
 
     private Rigidbody2D body;
-    private LineRenderer tongueLine;
+    [HideInInspector] public LineRenderer tongueLine;
     private Vector3 mousePosition;
     [HideInInspector] public TongueTip tip;
-    [HideInInspector] public SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +23,10 @@ public class PlayerController : Singleton<PlayerController>
         body = GetComponentInChildren<Rigidbody2D>();
         tongueLine = GetComponentInChildren<LineRenderer>();
         tip = GetComponentInChildren<TongueTip>();
+        anim = GetComponent<Animator>();
         tongueLine.startWidth = 0.5f;
         tongueLine.endWidth = tongueLine.startWidth;
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        tongueLine.sortingLayerName = "Default";
     }
 
     // Update is called once per frame
@@ -40,6 +42,25 @@ public class PlayerController : Singleton<PlayerController>
         // If moving diagonally, make sure to account for reduced speed
         if (hAxis != 0 && vAxis != 0)
             moveDistance *= 0.7071f;
+        switch (hAxis)
+        {
+            case 1:
+            spriteRenderer.flipX = false;
+            anim.SetBool("isLeft",false);
+            break;
+            case -1:
+            spriteRenderer.flipX = true;
+            anim.SetBool("isLeft",true);
+            break;
+        }
+        if (hAxis != 0 || vAxis != 0)
+        {
+            anim.SetBool("isMoving",true);
+        }
+        else
+        {
+            anim.SetBool("isMoving",false);
+        }
 
         body.MovePosition(transform.position + new Vector3(hAxis * moveDistance, vAxis * moveDistance, 0));
 
@@ -85,6 +106,8 @@ public class PlayerController : Singleton<PlayerController>
 
         //TODO: Get the tongue to shoot out (I suggest using tongueLine)
         // 1. tongue goes towards mouse position
+        tip.GetComponent<SpriteRenderer>().enabled = true;
+        tongueLine.sortingLayerName = "Tongue";
         mousePosition = (Vector3)GetCurrentMousePosition();
         tip.SetTargetPosition(mousePosition);
         // 2. tongue moves out and back if it misses
