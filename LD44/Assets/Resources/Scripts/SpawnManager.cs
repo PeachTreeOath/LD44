@@ -112,11 +112,14 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void WaveSpawn()
     {
-        UITextManager.instance.SetWave(waveNumber);
+        
 
         enemyAmountMax *= 2;
         waveNumber++;
         spawnEnemyOn = true;
+
+        UITextManager.instance.SetWave(waveNumber);
+        UITextManager.instance.SetEnemiesLeft(enemyAmountMax);
         //Debug.Log("Spawning wave " + waveNumber);
     }
 
