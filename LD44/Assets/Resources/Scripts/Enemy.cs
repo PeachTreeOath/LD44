@@ -212,8 +212,7 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D otherCollider)
     {
-
-        //TODO grab gold.
+        //Start picking up gold
         if (!hasGold && otherCollider.gameObject.tag.Equals("gold_pile")){
             if (secondsGrabbingGold >= timeToGrabGold)
             {
@@ -227,8 +226,21 @@ public class Enemy : MonoBehaviour
                 secondsGrabbingGold += Time.deltaTime;
             }
         }
-        //TODO deposit gold
+
+       
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Exit arena and dispose of gold
+        if (hasGold && collision.gameObject.tag.Equals("door"))
+        {
+            TreasureController.instance.DestoryTreasure(heldTreasure);
+            Destroy(this.gameObject);
+        }
+    }
+
+
 
     // Only works against the IntangibleWallTrigger layer
     public void OnTriggerExit2D(Collider2D otherCollider)
