@@ -22,8 +22,8 @@ public class PlayerController : Singleton<PlayerController>
         tongueLine = GetComponentInChildren<LineRenderer>();
         tip = GetComponentInChildren<TongueTip>();
         anim = GetComponent<Animator>();
-        tongueLine.startWidth = 0.5f;
-        tongueLine.endWidth = tongueLine.startWidth;
+        // tongueLine.startWidth = 0.5f;
+        // tongueLine.endWidth = tongueLine.startWidth;
         tongueLine.sortingLayerName = "Default";
     }
 
