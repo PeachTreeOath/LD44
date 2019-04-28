@@ -34,8 +34,8 @@ public class TongueTip : MonoBehaviour
             if (isTongueReturning)
                 transform.position = Vector3.MoveTowards(transform.position, returnPosition, moveSpeed * Time.deltaTime);
 
-            if (isEnemyTongued)
-            { 
+            if (isEnemyTongued && tonguedEnemy)
+            {
                 transform.position = tonguedEnemy.GetEnemyPosition();
             }
 
@@ -45,19 +45,12 @@ public class TongueTip : MonoBehaviour
                 isTongueReturning = true;
             }
 
-            if (Input.GetButtonUp("Fire1"))
-            {
-                isTongueExtending = false;
-                isTongueReturning = true;
-                isEnemyTongued = false;
-            }
-
             if (isTongueReturning && transform.position == returnPosition)
             {
                 isTongueReturning = false;
                 isPlayerTongueing = false;
                 player.GetComponentInChildren<LineRenderer>().positionCount = 0;
-                        player.spriteRenderer.sprite = ResourceLoader.instance.mimicClosedSprite;
+                player.spriteRenderer.sprite = ResourceLoader.instance.mimicClosedSprite;
             }
         }
         else
@@ -85,7 +78,15 @@ public class TongueTip : MonoBehaviour
         {
             tonguedEnemy.ReleaseGrab();
             tonguedEnemy = null;
+            RetractTongue();
         }
+    }
+
+    public void RetractTongue()
+    {
+        isTongueExtending = false;
+        isTongueReturning = true;
+        isEnemyTongued = false;
     }
 
     /// <summary>
