@@ -11,6 +11,7 @@ public class ResourceLoader : Singleton<ResourceLoader>
 {
     [HideInInspector] public Sprite mimicClosedSprite;
     [HideInInspector] public Sprite mimicOpenedSprite;
+    [HideInInspector] public GameObject lickParticles;
 
 
     // Use this for initialization
@@ -25,5 +26,6 @@ public class ResourceLoader : Singleton<ResourceLoader>
     {
         mimicClosedSprite = Resources.Load<Sprite>("Sprites/sweet_mimic");
         mimicOpenedSprite = Resources.Load<Sprite>("Sprites/sCARY_MIMIC");
+        lickParticles = Resources.Load<GameObject>("Prefabs/LickParticles");
     }
 }
