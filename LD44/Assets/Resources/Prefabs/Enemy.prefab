@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9220077555609051522}
   - component: {fileID: 1853483820414320619}
   - component: {fileID: 8070527911907475038}
+  - component: {fileID: 5500546023920590730}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -133,6 +134,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 0.5
   timeToGrabGold: 3
+  timeToRecalcTarget: 3
   throwSpeed: 50
   moveTowardsSpeed: 10
   hasGold: 0
+--- !u!58 &5500546023920590730
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960242478692454744}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1

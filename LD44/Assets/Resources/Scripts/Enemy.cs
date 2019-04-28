@@ -236,6 +236,7 @@ public class Enemy : MonoBehaviour
         if (hasGold && collision.gameObject.tag.Equals("door"))
         {
             TreasureController.instance.DestoryTreasure(heldTreasure);
+            SpawnManager.instance.NotifyEnemyDead();
             Destroy(this.gameObject);
         }
     }
