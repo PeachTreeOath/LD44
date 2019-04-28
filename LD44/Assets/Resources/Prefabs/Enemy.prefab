@@ -137,7 +137,9 @@ MonoBehaviour:
   timeToRecalcTarget: 3
   throwSpeed: 50
   moveTowardsSpeed: 10
+  body: {fileID: 0}
   hasGold: 0
+  minimumCollisionVelocityForDeath: 1
 --- !u!58 &5500546023920590730
 CircleCollider2D:
   m_ObjectHideFlags: 0
