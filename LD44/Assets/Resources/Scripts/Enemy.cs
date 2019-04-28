@@ -8,11 +8,10 @@ public class Enemy : MonoBehaviour
 
     private GameObject target;
     private string targetTag;
-    private float Range = 10f;
-    public float walkSpeed = 10f;
-    public float timeToGrabGold = 3f;
+    private float goldGatherRange;
+    public float walkSpeed;
     public float timeToRecalcTarget = 3f;
-    public float timeInStun = 3f;
+    public float timeInStun;
 
     public float throwSpeed;
     public float moveTowardsSpeed;
@@ -48,25 +47,25 @@ public class Enemy : MonoBehaviour
     private int timeInStatus, goldCarried;
 
     //enemy type attributes
-    private int mass, speed, maxGoldCapacity, stunTime, goldGatherRange, goldGatherTime;
+    private float mass, maxGoldCapacity, stunTime, goldGatherTime;
 
     //temporary constructor; remove when enemy is made abstract
     public Enemy()
     {
         mass = 2;
-        speed = 3;
+        walkSpeed = 10f;
         maxGoldCapacity = 2;
-        stunTime = 2;
+        timeInStun = 2;
         goldGatherRange = 1;
-        goldGatherTime = 4;
+        goldGatherTime = 3;
     }
 
-    public Enemy(int mass, int speed, int maxGoldCapacity, int stunTime, int goldGatherRange, int goldGatherTime)
+    public Enemy(float mass, float speed, int maxGoldCapacity, float timeInStun, float goldGatherRange, float goldGatherTime)
     {
         this.mass = mass;
-        this.speed = speed;
+        this.walkSpeed = speed;
         this.maxGoldCapacity = maxGoldCapacity;
-        this.stunTime = stunTime;
+        this.timeInStun = timeInStun;
         this.goldGatherRange = goldGatherRange;
         this.goldGatherTime = goldGatherTime;
     }
@@ -264,7 +263,7 @@ public class Enemy : MonoBehaviour
         //Start picking up gold
         if (!isInThrowSequence() && !hasGold && otherCollider.gameObject.tag.Equals("gold_pile"))
         {
-            if (secondsGrabbingGold >= timeToGrabGold)
+            if (secondsGrabbingGold >= goldGatherTime)
             {
                 secondsGrabbingGold = 0f;
                 heldTreasure = TreasureController.instance.TakeTreasure(otherCollider.gameObject);
