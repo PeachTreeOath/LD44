@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UITextManager : MonoBehaviour
+public class UITextManager : Singleton<UITextManager>
 {
 
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI enemiesLeftText;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetWave(int wave)
     {
-        
+        waveText.text = "Wave " + wave + " of 10";
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetEnemiesLeft(int wave)
     {
-        
+        enemiesLeftText.text = wave + " enemies left";
     }
 }

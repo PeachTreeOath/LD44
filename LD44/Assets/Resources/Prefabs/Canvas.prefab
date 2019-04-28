@@ -427,5 +427,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9c02f21d0d549fb9d445d86bc3141b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveText: {fileID: 0}
-  enemiesLeftText: {fileID: 0}
+  waveText: {fileID: 2119804866}
+  enemiesLeftText: {fileID: 337093909}
