@@ -83,6 +83,7 @@ public class PlayerController : Singleton<PlayerController>
 
         //TODO: Get the tongue to shoot out (I suggest using tongueLine)
         // 1. tongue goes towards mouse position
+        tip.GetComponent<SpriteRenderer>().enabled = true;
         mousePosition = (Vector3)GetCurrentMousePosition();
         tip.SetTargetPosition(mousePosition);
         // 2. tongue moves out and back if it misses
