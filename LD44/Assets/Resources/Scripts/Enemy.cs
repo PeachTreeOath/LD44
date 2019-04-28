@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     private float secondsMovingToTarget = 0f;
     private float secondsStunned = 0f;
     private GameObject heldTreasure = null;
+    private Animator anim;
 
     public enum EnemyState
     {
@@ -43,6 +44,14 @@ public class Enemy : MonoBehaviour
         DAMAGED,
         DYING,
         BEING_FLUNG
+    }
+
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
     }
 
     private EnemyState enemyState;
@@ -156,9 +165,11 @@ public class Enemy : MonoBehaviour
         }
         else if (isStunned)
         {
+            anim.speed = 0;
             secondsStunned += Time.deltaTime;
             if (secondsStunned >= timeInStun)
             {
+                anim.speed = 1;
                 isStunned = false;
 
             }
