@@ -200,6 +200,11 @@ public class Enemy : MonoBehaviour
             body.velocity = (totalVelocity / previousPositions.Count) * throwSpeed;
     }
 
+    public Vector2 GetEnemyPosition()
+    {
+        return body.position;
+    }
+
 
     public void OnTriggerStay2D(Collider2D otherCollider)
     {
@@ -219,6 +224,12 @@ public class Enemy : MonoBehaviour
             }
         }
         //TODO deposit gold
+    }
+
+    // Only works against the IntangibleWallTrigger layer
+    public void OnTriggerExit2D(Collider2D otherCollider)
+    {
+        gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     void seekingGoldBehavior()

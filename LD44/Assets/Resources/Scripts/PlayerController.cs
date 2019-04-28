@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private LineRenderer tongueLine;
     private Vector3 mousePosition;
     private TongueTip tip;
-    public SpriteRenderer spriteRenderer;
+    [HideInInspector] public SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
