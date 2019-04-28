@@ -33,6 +33,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Thief
       objectReference: {fileID: 0}
+    - target: {fileID: 4493750556487170640, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1998ef60d5852fe418d9ab5a711530d5,
+        type: 3}
     - target: {fileID: 2473655160327571651, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -88,12 +94,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4493750556487170640, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e98d9e0bb2fee4447a334a47ccd80e34,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25807d1e0cd7fb149b34cb98a990dbc5, type: 3}
 --- !u!1 &3048728808124711267 stripped
