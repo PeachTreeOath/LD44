@@ -152,6 +152,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //Bundles all of the states where AI behavior needs to be disabled.
+    private bool isInThrowSequence()
+    {
+        return isThrown || isGrabbed || isStunned;
+    }
+
     private void MoveTowardNearestObjectWithTag(string tag)
     {
         if (target == null || !targetTag.Equals(tag) || secondsMovingToTarget >= timeToRecalcTarget)
@@ -235,7 +241,7 @@ public class Enemy : MonoBehaviour
     public void OnTriggerStay2D(Collider2D otherCollider)
     {
         //Start picking up gold
-        if (!hasGold && otherCollider.gameObject.tag.Equals("gold_pile"))
+        if (!isInThrowSequence() && !hasGold && otherCollider.gameObject.tag.Equals("gold_pile"))
         {
             if (secondsGrabbingGold >= timeToGrabGold)
             {
@@ -256,7 +262,7 @@ public class Enemy : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         //Exit arena and dispose of gold
-        if (hasGold && collision.gameObject.tag.Equals("door"))
+        if (!isInThrowSequence() && hasGold && collision.gameObject.tag.Equals("door"))
         {
             TreasureController.instance.DestoryTreasure(heldTreasure);
             hasGold = false;
