@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     private string targetTag;
     private float Range = 10f;
     public float walkSpeed = 10f;
+    public float timeToGrabGold = 3f;
 
     public float throwSpeed;
     public float moveTowardsSpeed;
@@ -18,9 +19,10 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D body;
     private Queue<Vector3> previousPositions = new Queue<Vector3>();
     private Vector3 previousPosition;
-
-    //AI states
+    
     public bool hasGold = false;
+    private float secondsGrabbingGold = 0f;
+    private GameObject heldTreasure = null;
 
     public enum EnemyState
     {
@@ -201,8 +203,21 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D otherCollider)
     {
-        //TODO grab gold.
 
+        //TODO grab gold.
+        if (!hasGold && otherCollider.gameObject.tag.Equals("gold_pile")){
+            if (secondsGrabbingGold >= timeToGrabGold)
+            {
+                secondsGrabbingGold = 0f;
+                heldTreasure = TreasureController.instance.TakeTreasure(otherCollider.gameObject);
+                hasGold = true;
+            }
+            else
+            {
+                //not enough time picking up the gold
+                secondsGrabbingGold += Time.deltaTime;
+            }
+        }
         //TODO deposit gold
     }
 
