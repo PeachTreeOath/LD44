@@ -14,7 +14,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private int enemyAmountMax = 3;
     private int enemyAmount = 0;
-    private int enemyTypeMaxRange = 0;
+    private int enemyTypeMaxRange = 3;
     private int enemiesDead = 0;
 
     private int randomSpawnPointNum;
