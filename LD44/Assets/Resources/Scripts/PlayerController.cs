@@ -24,7 +24,7 @@ public class PlayerController : Singleton<PlayerController>
         anim = GetComponent<Animator>();
         tongueLine.startWidth = 0.5f;
         tongueLine.endWidth = tongueLine.startWidth;
-        tongueLine.enabled = false;
+        tongueLine.sortingLayerName = "Default";
     }
 
     // Update is called once per frame
@@ -105,7 +105,7 @@ public class PlayerController : Singleton<PlayerController>
         //TODO: Get the tongue to shoot out (I suggest using tongueLine)
         // 1. tongue goes towards mouse position
         tip.GetComponent<SpriteRenderer>().enabled = true;
-        tongueLine.enabled = true;
+        tongueLine.sortingLayerName = "Tongue";
         mousePosition = (Vector3)GetCurrentMousePosition();
         tip.SetTargetPosition(mousePosition);
         // 2. tongue moves out and back if it misses
