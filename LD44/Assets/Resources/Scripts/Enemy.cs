@@ -296,9 +296,13 @@ public class Enemy : MonoBehaviour
     {
         PlayerController.instance.tip.ReleaseEnemy();
         SpawnManager.instance.NotifyEnemyDead();
+
+        if (hasGold)
+        {
+            TreasureController.instance.PlaceTreasure(heldTreasure, transform.position);
+            Debug.Log("Dropping treasure.");
+        }
         Destroy(gameObject);
-        //TODO: Spawn corpse
-        //Todo: drop gold
     }
 
     // Only works against the IntangibleWallTrigger layer

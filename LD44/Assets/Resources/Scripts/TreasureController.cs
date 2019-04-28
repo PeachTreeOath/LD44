@@ -84,6 +84,8 @@ public class TreasureController : MonoBehaviour
     {
         treasures.Add(new KeyValuePair<Vector2, GameObject>(location, treasure));
         CountChangedEvent?.Invoke(treasures.Count);
+        treasure.transform.position = location;
+        treasure.SetActive(true);
     }
 
     public GameObject TakeTreasure(GameObject treasure)
