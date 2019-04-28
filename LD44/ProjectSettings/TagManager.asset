@@ -40,6 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Hidden
+    uniqueID: 3553265877
+    locked: 0
   - name: BG
     uniqueID: 490323737
     locked: 0

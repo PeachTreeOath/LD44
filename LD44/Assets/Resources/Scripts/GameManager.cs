@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
-	MainGame, // 0
-	GameOver, // 1
-	Other     // 2
+    MainGame, // 0
+    GameOver, // 1
+    Other     // 2
 }
 
 public class GameManager : Singleton<GameManager>
@@ -14,14 +15,14 @@ public class GameManager : Singleton<GameManager>
     //public bool gameStarted = false;
     //public bool startScreen = true;
 
-	// Dictates the state of the game
-	public GameState CurrentState
-	{ get; protected set; }
+    // Dictates the state of the game
+    public GameState CurrentState
+    { get; protected set; }
 
-	// Start is called before the first frame update
-	void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-		CurrentState = GameState.Other;
+        CurrentState = GameState.Other;
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     {
         // --DEPRECATED--
 
-		//if (gameStarted)
+        //if (gameStarted)
         //{
         //    //TODO: fill with game business logic (check enemy's for win/wave?, check gold for loss, spawn enemies, etc.)
         //}
@@ -45,19 +46,20 @@ public class GameManager : Singleton<GameManager>
 
     }
 
-	public void AssessTreasureCount(int inInt)
-	{
-		if (inInt < 1)
-		{
-			// If there's no money left on the field,
-			// sets game state to Game Over and calls UI Text Manager
-			// to turn on the GameOver UI panel.
-			CurrentState = GameState.GameOver;
-			UITextManager.instance.OnGameOver();
-		}
-		else
-		{
-			CurrentState = GameState.MainGame;
-		}
-	}
+    public void AssessTreasureCount(int inInt)
+    {
+        if (inInt < 1)
+        {
+            // If there's no money left on the field,
+            // sets game state to Game Over and calls UI Text Manager
+            // to turn on the GameOver UI panel.
+            CurrentState = GameState.GameOver;
+            //UITextManager.instance.OnGameOver();
+            SceneManager.LoadScene("GameOver");
+        }
+        else
+        {
+            CurrentState = GameState.MainGame;
+        }
+    }
 }

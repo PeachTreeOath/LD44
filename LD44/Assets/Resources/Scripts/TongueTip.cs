@@ -68,7 +68,7 @@ public class TongueTip : MonoBehaviour
                 isPlayerTongueing = false;
                 //player.GetComponentInChildren<LineRenderer>().positionCount = 0;
                 GetComponent<SpriteRenderer>().enabled = false;
-                player.tongueLine.sortingLayerName = "Default";
+                player.tongueLine.sortingLayerName = "Hidden";
                 player.spriteRenderer.sprite = ResourceLoader.instance.mimicClosedSprite;
             }
 
@@ -94,7 +94,7 @@ public class TongueTip : MonoBehaviour
 
     public void ReleaseEnemy()
     {
-        Debug.Log("ReleaseEnemy");
+//        Debug.Log("ReleaseEnemy");
         if (tonguedEnemy != null)
         {
             tonguedEnemy.ReleaseGrab();
