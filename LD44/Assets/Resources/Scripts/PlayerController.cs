@@ -31,7 +31,7 @@ public class PlayerController : Singleton<PlayerController>
         anim = GetComponent<Animator>();
         // tongueLine.startWidth = 0.5f;
         // tongueLine.endWidth = tongueLine.startWidth;
-        tongueLine.sortingLayerName = "Default";
+        tongueLine.sortingLayerName = "Hidden";
     }
 
     // Update is called once per frame
