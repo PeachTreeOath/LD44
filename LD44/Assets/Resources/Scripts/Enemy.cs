@@ -198,6 +198,11 @@ public class Enemy : MonoBehaviour
             body.velocity = (totalVelocity / previousPositions.Count) * throwSpeed;
     }
 
+    public Vector2 GetEnemyPosition()
+    {
+        return body.position;
+    }
+
 
     public void OnTriggerStay2D(Collider2D otherCollider)
     {
