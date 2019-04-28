@@ -8,7 +8,7 @@ public class CameraShake : MonoBehaviour
     [SerializeField]
     private float shake;
 
-    private float angleMax = 0.5f;
+    private float angleMax = 1.5f;
     private float offsetMax = 0.3f;
     private float xOffset;
     private float yOffset;
@@ -57,7 +57,7 @@ public class CameraShake : MonoBehaviour
         {
 
             shake = Mathf.Pow(trauma, 2);
-            if (shake >= 1)
+            if (shake > 1)
             {
                 shake = 1.0f;
             }
@@ -89,7 +89,7 @@ public class CameraShake : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            trauma += 0.2f;
+            trauma += 0.3f;
         }
     }
 
