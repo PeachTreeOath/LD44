@@ -9,8 +9,8 @@ using UnityEngine;
 /// <typeparam name="ResourceLoader"></typeparam>
 public class ResourceLoader : Singleton<ResourceLoader>
 {
-    public Sprite mimicClosedSprite;
-    public Sprite mimicOpenedSprite;
+    [HideInInspector] public Sprite mimicClosedSprite;
+    [HideInInspector] public Sprite mimicOpenedSprite;
 
 
     // Use this for initialization
@@ -23,7 +23,7 @@ public class ResourceLoader : Singleton<ResourceLoader>
 
     private void LoadResources()
     {
-       // mimicClosedSprite = Resources.Load<Sprite>("Textures/sweet_mimic");
-       // mimicOpenedSprite = Resources.Load<Sprite>("Textures/sCARY_MIMIC");
+        mimicClosedSprite = Resources.Load<Sprite>("Sprites/sweet_mimic");
+        mimicOpenedSprite = Resources.Load<Sprite>("Sprites/sCARY_MIMIC");
     }
 }
