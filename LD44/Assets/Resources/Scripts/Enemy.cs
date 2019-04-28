@@ -251,9 +251,8 @@ public class Enemy : MonoBehaviour
         if (hasGold && collision.gameObject.tag.Equals("door"))
         {
             TreasureController.instance.DestoryTreasure(heldTreasure);
-            SpawnManager.instance.NotifyEnemyDead();
             hasGold = false;
-            Destroy(this.gameObject);
+            Die();
         }
     }
 
@@ -263,7 +262,7 @@ public class Enemy : MonoBehaviour
         if (otherEnemy)
         {
             Vector3 newVelocity = body.velocity + otherEnemy.body.velocity;
-                Debug.LogWarning("COLLISION AT " + newVelocity.magnitude);
+            Debug.LogWarning("COLLISION AT " + newVelocity.magnitude);
             if (newVelocity.magnitude > minimumCollisionVelocityForDeath)
             {
                 Die();
@@ -271,7 +270,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-                Debug.LogWarning("COLLISION AT " + body.velocity.magnitude);
+            Debug.LogWarning("COLLISION AT " + body.velocity.magnitude);
             if (body.velocity.magnitude > minimumCollisionVelocityForDeath)
             {
                 Die();
@@ -281,6 +280,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        PlayerController.instance.tip.ReleaseEnemy();
         SpawnManager.instance.NotifyEnemyDead();
         Destroy(gameObject);
         //TODO: Spawn corpse

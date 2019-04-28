@@ -33,16 +33,23 @@ public class SpawnManager : Singleton<SpawnManager>
     public float waveDelay = 0.0f;
     public float waveTimer = 5.0f;
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
         allChildren = spawnPointParent.GetComponentsInChildren<Transform>();
-    }
+        List<Transform> tempList = new List<Transform>(allChildren);
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
+        Transform toRemove = null;
+        foreach (Transform child in allChildren)
+        {
+            if (child.gameObject.GetInstanceID() == spawnPointParent.gameObject.GetInstanceID())
+            {
+                toRemove = child;
+                break;
+            }
+        }
+        tempList.Remove(toRemove);
+        allChildren = tempList.ToArray();
     }
 
     private void Update()
@@ -112,7 +119,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void WaveSpawn()
     {
-        
+
 
         enemyAmountMax *= 2;
         waveNumber++;

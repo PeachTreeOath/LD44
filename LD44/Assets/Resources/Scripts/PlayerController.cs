@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
 
     public float moveSpeed;
@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D body;
     private LineRenderer tongueLine;
     private Vector3 mousePosition;
-    private TongueTip tip;
+    [HideInInspector] public TongueTip tip;
     [HideInInspector] public SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
