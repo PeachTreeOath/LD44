@@ -241,6 +241,7 @@ public class Enemy : MonoBehaviour
         {
             TreasureController.instance.DestoryTreasure(heldTreasure);
             SpawnManager.instance.NotifyEnemyDead();
+            hasGold = false;
             Destroy(this.gameObject);
         }
     }

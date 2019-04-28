@@ -33,10 +33,9 @@ public class SpawnManager : Singleton<SpawnManager>
     public float waveDelay = 0.0f;
     public float waveTimer = 5.0f;
 
-    protected override void Awake()
+    private void Awake()
     {
-       base.Awake();
-
+        base.Awake();
         allChildren = spawnPointParent.GetComponentsInChildren<Transform>();
     }
 
@@ -71,7 +70,7 @@ public class SpawnManager : Singleton<SpawnManager>
             Instantiate(enemyTypes[randomEnemyType], allChildren[randomSpawnPointNum].transform.position, Quaternion.identity);
             enemyAmount++;
             Debug.Log("Number of enemies: " + enemyAmount);
-            if (enemyAmount == enemyAmountMax)
+            if (enemyAmount >= enemyAmountMax)
             {
                 spawnEnemyOn = false;
             }
@@ -98,7 +97,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void StartNewWave()
     {
-        if (enemiesDead == enemyAmountMax)
+        if (enemiesDead >= enemyAmountMax)
         {
             waveTimer -= Time.deltaTime;
             Debug.Log("Wave Delay countdown = " + waveTimer);
