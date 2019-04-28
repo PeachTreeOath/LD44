@@ -34,6 +34,11 @@ public class TongueTip : MonoBehaviour
             if (isTongueReturning)
                 transform.position = Vector3.MoveTowards(transform.position, returnPosition, moveSpeed * Time.deltaTime);
 
+            if (isEnemyTongued)
+            { 
+                transform.position = tonguedEnemy.GetEnemyPosition();
+            }
+
             if (targetPosition == transform.position)
             {
                 isTongueExtending = false;
@@ -44,6 +49,7 @@ public class TongueTip : MonoBehaviour
             {
                 isTongueExtending = false;
                 isTongueReturning = true;
+                isEnemyTongued = false;
             }
 
             if (isTongueReturning && transform.position == returnPosition)
@@ -89,12 +95,15 @@ public class TongueTip : MonoBehaviour
     /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
-        tonguedEnemy = other.GetComponentInChildren<Enemy>();
         if (tonguedEnemy)
+            return;
+
+        tonguedEnemy = other.GetComponentInChildren<Enemy>();
+        if (tonguedEnemy && Input.GetButton("Fire1"))
         {
             tonguedEnemy.StartGrab();
             isTongueExtending = false;
-            isTongueReturning = true;
+            isTongueReturning = false;
             isEnemyTongued = true;
         }
     }
