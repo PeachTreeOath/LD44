@@ -51,9 +51,9 @@ public class PlayerController : Singleton<PlayerController>
         }
         else
         {
-            tongueLine.positionCount = 2;
-            tongueLine.SetPosition(0, transform.position);
-            tongueLine.SetPosition(1, tip.transform.position);
+            //tongueLine.positionCount = 2;
+            //tongueLine.SetPosition(0, transform.position);
+            //tongueLine.SetPosition(1, tip.transform.position);
         }
 
         if (Input.GetButtonUp("Fire1"))

@@ -30,13 +30,23 @@ public class TongueTip : MonoBehaviour
         if (isPlayerTongueing)
         {
             if (isTongueExtending)
+            {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, targetPosition, moveSpeed * 0.5f * Time.deltaTime);
+                BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, targetPosition, moveSpeed * 0.25f * Time.deltaTime);
+            }
             if (isTongueReturning)
+            {
                 transform.position = Vector3.MoveTowards(transform.position, returnPosition, moveSpeed * Time.deltaTime);
+                BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, returnPosition, moveSpeed * 1.5f * Time.deltaTime);
+                BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, returnPosition, moveSpeed * 1.5f * Time.deltaTime);
+            }
 
             if (isEnemyTongued && tonguedEnemy)
             {
                 transform.position = tonguedEnemy.GetEnemyPosition();
+                BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, transform.position, moveSpeed * 0.6f * Time.deltaTime);
+                BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, transform.position, moveSpeed * 0.3f * Time.deltaTime);
             }
 
             if (targetPosition == transform.position)
@@ -49,7 +59,7 @@ public class TongueTip : MonoBehaviour
             {
                 isTongueReturning = false;
                 isPlayerTongueing = false;
-                player.GetComponentInChildren<LineRenderer>().positionCount = 0;
+                //player.GetComponentInChildren<LineRenderer>().positionCount = 0;
                 player.spriteRenderer.sprite = ResourceLoader.instance.mimicClosedSprite;
             }
         }
