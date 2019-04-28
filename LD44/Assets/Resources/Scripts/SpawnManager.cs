@@ -33,10 +33,10 @@ public class SpawnManager : Singleton<SpawnManager>
     public float waveDelay = 0.0f;
     public float waveTimer = 5.0f;
 
-    private void Awake()
+    protected override void Awake()
     {
        base.Awake();
-       
+
         allChildren = spawnPointParent.GetComponentsInChildren<Transform>();
     }
 
