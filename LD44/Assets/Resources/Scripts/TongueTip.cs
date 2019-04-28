@@ -89,7 +89,7 @@ public class TongueTip : MonoBehaviour
 
     public void ReleaseEnemy()
     {
-        Debug.Log("ReleaseEnemy");
+//        Debug.Log("ReleaseEnemy");
         if (tonguedEnemy != null)
         {
             tonguedEnemy.ReleaseGrab();

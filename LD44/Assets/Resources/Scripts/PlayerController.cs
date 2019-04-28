@@ -116,7 +116,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void ReleaseTonguedEnemy()
     {
-        Debug.Log("releasetonguedenemy");
+//        Debug.Log("releasetonguedenemy");
 
         tip.ReleaseEnemy();
     }

@@ -76,7 +76,7 @@ public class SpawnManager : Singleton<SpawnManager>
             // Spawning enemies in random locations
             Instantiate(enemyTypes[randomEnemyType], allChildren[randomSpawnPointNum].transform.position, Quaternion.identity);
             enemyAmount++;
-            Debug.Log("Number of enemies: " + enemyAmount);
+//            Debug.Log("Number of enemies: " + enemyAmount);
             if (enemyAmount >= enemyAmountMax)
             {
                 spawnEnemyOn = false;
@@ -107,7 +107,7 @@ public class SpawnManager : Singleton<SpawnManager>
         if (enemiesDead >= enemyAmountMax)
         {
             waveTimer -= Time.deltaTime;
-            Debug.Log("Wave Delay countdown = " + waveTimer);
+            //Debug.Log("Wave Delay countdown = " + waveTimer);
 
             if (waveTimer <= waveDelay)
             {

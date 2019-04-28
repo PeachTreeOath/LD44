@@ -243,7 +243,7 @@ public class Enemy : MonoBehaviour
 
     public void ReleaseGrab()
     {
-        Debug.Log("releaseGrab");
+//        Debug.Log("releaseGrab");
 
         isGrabbed = false;
         isThrown = true;
@@ -303,7 +303,7 @@ public class Enemy : MonoBehaviour
         if (otherEnemy)
         {
             Vector3 newVelocity = body.velocity - otherEnemy.body.velocity;
-            Debug.LogWarning("COLLISION AT " + newVelocity.magnitude);
+       //     Debug.LogWarning("COLLISION AT " + newVelocity.magnitude);
             if (newVelocity.magnitude > minimumCollisionVelocityForDeath)
             {
                 Die();
@@ -312,7 +312,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("COLLISION AT " + body.velocity.magnitude);
+//            Debug.LogWarning("COLLISION AT " + body.velocity.magnitude);
             if (body.velocity.magnitude > minimumCollisionVelocityForDeath)
             {
                 Die();
