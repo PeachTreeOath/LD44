@@ -50,6 +50,27 @@ public class Enemy : MonoBehaviour
     //enemy type attributes
     private int mass, speed, maxGoldCapacity, stunTime, goldGatherRange, goldGatherTime;
 
+    //temporary constructor; remove when enemy is made abstract
+    public Enemy()
+    {
+        mass = 2;
+        speed = 3;
+        maxGoldCapacity = 2;
+        stunTime = 2;
+        goldGatherRange = 1;
+        goldGatherTime = 4;
+    }
+
+    public Enemy(int mass, int speed, int maxGoldCapacity, int stunTime, int goldGatherRange, int goldGatherTime)
+    {
+        this.mass = mass;
+        this.speed = speed;
+        this.maxGoldCapacity = maxGoldCapacity;
+        this.stunTime = stunTime;
+        this.goldGatherRange = goldGatherRange;
+        this.goldGatherTime = goldGatherTime;
+    }
+
     public float minimumCollisionVelocityForDeath;
 
     private EnemyState selfDetermineState()
