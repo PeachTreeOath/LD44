@@ -34,27 +34,32 @@ public class TongueTip : MonoBehaviour
             if (isTongueExtending)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-                BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5f, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
-                BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
+                //BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5f, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
+                //BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
             }
             if (isTongueReturning)
             {
                 transform.position = Vector3.MoveTowards(transform.position, returnPosition, moveSpeed * Time.deltaTime);
-                BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5f, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
-                BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5f, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
+                //BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5f, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
+                //BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5f, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
             }
+
+            if(BezierLineRenderer.instance.point1.position != targetPosition)
+                BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, transform.position, moveSpeed * 0.8f * Time.deltaTime);
+
+            if (BezierLineRenderer.instance.point2.position != targetPosition)
+                BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, transform.position, moveSpeed * 0.4f * Time.deltaTime);
+
 
             if (isEnemyTongued && tonguedEnemy)
             {
                 transform.position = tonguedEnemy.GetEnemyPosition();
-                BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, transform.position, moveSpeed * 0.6f * Time.deltaTime);
-                BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, transform.position, moveSpeed * 0.3f * Time.deltaTime);
             }
 
             if (targetPosition == transform.position || Vector2.Distance(transform.position, player.transform.position) > tongueLength)
             {
                 isTongueExtending = false;
-                isTongueReturning = !Input.GetButton("Fire1");
+                isTongueReturning = true; //!Input.GetButton("Fire1");
             }
 
             if (isTongueReturning && transform.position == returnPosition)
@@ -71,7 +76,7 @@ public class TongueTip : MonoBehaviour
         }
         else
         {
-            transform.position = returnPosition;
+            BezierLineRenderer.instance.point1.position = BezierLineRenderer.instance.point2.position = transform.position = returnPosition;
         }
 
         /* if (isEnemyTongued)
