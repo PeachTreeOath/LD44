@@ -13,6 +13,7 @@ public class TongueTip : MonoBehaviour
     private Vector3 returnPosition;
     private PlayerController player;
     private Enemy tonguedEnemy;
+    private float tongueLength = 5;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -50,7 +51,7 @@ public class TongueTip : MonoBehaviour
                 BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, transform.position, moveSpeed * 0.3f * Time.deltaTime);
             }
 
-            if (targetPosition == transform.position)
+            if (targetPosition == transform.position || Vector2.Distance(transform.position, player.transform.position) > tongueLength)
             {
                 isTongueExtending = false;
                 isTongueReturning = true;
@@ -65,6 +66,8 @@ public class TongueTip : MonoBehaviour
                 player.tongueLine.enabled = false;
                 player.spriteRenderer.sprite = ResourceLoader.instance.mimicClosedSprite;
             }
+
+            transform.position = BezierLineRenderer.instance.tipAttachPoint;
         }
         else
         {

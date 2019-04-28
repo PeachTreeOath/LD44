@@ -14,6 +14,8 @@ public class BezierLineRenderer : MonoBehaviour
     private int numPoints = 50;
     private Vector3[] positions = new Vector3[50];
 
+    public Vector3 tipAttachPoint;
+
     private void Awake()
     {
         if (instance == null)
@@ -74,6 +76,8 @@ public class BezierLineRenderer : MonoBehaviour
         }
 
         lineRenderer.SetPositions(positions);
+
+        tipAttachPoint = positions[2];
     }
 
     private Vector3 CalculateLinerBezierPoint(float t, Vector3 p0, Vector3 p1)
