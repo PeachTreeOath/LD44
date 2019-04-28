@@ -35,6 +35,8 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void Awake()
     {
+       base.Awake();
+       
         allChildren = spawnPointParent.GetComponentsInChildren<Transform>();
     }
 
