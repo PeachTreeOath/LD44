@@ -38,7 +38,10 @@ public class TreasureController : MonoBehaviour
 
     private void Start()
     {
-        GenerateTreasure();
+		// Sets the delegate action to have GameManager assess game state
+		CountChangedEvent = GameManager.instance.AssessTreasureCount;
+
+		GenerateTreasure();
     }
 
     private void Update()
