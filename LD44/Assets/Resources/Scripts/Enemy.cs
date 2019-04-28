@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,10 +18,10 @@ public class Enemy : MonoBehaviour
 
     private bool isGrabbed;
     private bool isThrown;
-    private Rigidbody2D body;
+    [HideInInspector] public Rigidbody2D body;
     private Queue<Vector3> previousPositions = new Queue<Vector3>();
     private Vector3 previousPosition;
-    
+
     public bool hasGold = false;
     private float secondsGrabbingGold = 0f;
     private float secondsMovingToTarget = 0f;
@@ -43,6 +44,8 @@ public class Enemy : MonoBehaviour
 
     //enemy type attributes
     private int mass, speed, maxGoldCapacity, stunTime, goldGatherRange, goldGatherTime;
+
+    public float minimumCollisionVelocityForDeath;
 
     private EnemyState selfDetermineState()
     {
@@ -142,7 +145,7 @@ public class Enemy : MonoBehaviour
 
         if (target != null)
         {
-            
+
             Vector2 direction = new Vector2((transform.position.x - target.transform.position.x), (transform.position.y - target.transform.position.y));
             Vector2 directionNormalized = direction.normalized;
             Vector2 velocity = new Vector2(directionNormalized.x * walkSpeed, directionNormalized.y * walkSpeed);
@@ -213,7 +216,8 @@ public class Enemy : MonoBehaviour
     public void OnTriggerStay2D(Collider2D otherCollider)
     {
         //Start picking up gold
-        if (!hasGold && otherCollider.gameObject.tag.Equals("gold_pile")){
+        if (!hasGold && otherCollider.gameObject.tag.Equals("gold_pile"))
+        {
             if (secondsGrabbingGold >= timeToGrabGold)
             {
                 secondsGrabbingGold = 0f;
@@ -227,7 +231,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-       
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -241,7 +245,34 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        Enemy otherEnemy = other.gameObject.GetComponent<Enemy>();
+        if (otherEnemy)
+        {
+            Vector3 newVelocity = body.velocity + otherEnemy.body.velocity;
+                Debug.LogWarning("COLLISION AT " + newVelocity.magnitude);
+            if (newVelocity.magnitude > minimumCollisionVelocityForDeath)
+            {
+                Die();
+            }
+        }
+        else
+        {
+                Debug.LogWarning("COLLISION AT " + body.velocity.magnitude);
+            if (body.velocity.magnitude > minimumCollisionVelocityForDeath)
+            {
+                Die();
+            }
+        }
+    }
 
+    private void Die()
+    {
+        SpawnManager.instance.NotifyEnemyDead();
+        Destroy(gameObject);
+        //TODO: Spawn corpse
+    }
 
     // Only works against the IntangibleWallTrigger layer
     public void OnTriggerExit2D(Collider2D otherCollider)
