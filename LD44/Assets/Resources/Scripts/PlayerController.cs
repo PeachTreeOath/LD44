@@ -44,9 +44,11 @@ public class PlayerController : Singleton<PlayerController>
         {
             case 1:
             spriteRenderer.flipX = false;
+            anim.SetBool("isLeft",false);
             break;
             case -1:
             spriteRenderer.flipX = true;
+            anim.SetBool("isLeft",true);
             break;
         }
         if (hAxis != 0 || vAxis != 0)
