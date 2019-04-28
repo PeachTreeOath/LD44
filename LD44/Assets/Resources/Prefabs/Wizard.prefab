@@ -18,6 +18,7 @@ MonoBehaviour:
   throwSpeed: 50
   moveTowardsSpeed: 10
   speedToRecoverFromThrow: 1
+  hasMoneyIcon: {fileID: 3278278201866034601}
   body: {fileID: 0}
   minimumCollisionVelocityForDeath: 1
 --- !u!1001 &3278278201492566416
@@ -35,12 +36,12 @@ PrefabInstance:
     - target: {fileID: 2473655160327571651, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.4159982
       objectReference: {fileID: 0}
     - target: {fileID: 2473655160327571651, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.2540979
       objectReference: {fileID: 0}
     - target: {fileID: 2473655160327571651, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
         type: 3}
@@ -93,12 +94,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b61924f58dc96744e867cbc82d5e8e61,
         type: 3}
-    m_RemovedComponents:
-    - {fileID: 8070527911907475038, guid: 25807d1e0cd7fb149b34cb98a990dbc5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25807d1e0cd7fb149b34cb98a990dbc5, type: 3}
 --- !u!1 &2318720308379033800 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 960242478692454744, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3278278201492566416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3278278201866034601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1811901497, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
     type: 3}
   m_PrefabInstance: {fileID: 3278278201492566416}
   m_PrefabAsset: {fileID: 0}
