@@ -10,7 +10,7 @@ public class UITextManager : Singleton<UITextManager>
     public TextMeshProUGUI startWaveText;
     public TextMeshProUGUI startWaveDescText;
     public TextMeshProUGUI enemiesLeftText;
-    private float totalAnimationTime = 2;
+    private float totalAnimationTime = 3;
 
     // This is the overlay that tells the player that the game is over
     public GameObject GameOverPanel;
@@ -49,7 +49,7 @@ public class UITextManager : Singleton<UITextManager>
                 startWaveDescText.text = "It's starting to get crowded in here";
                 break;
             case 6:
-                startWaveDescText.text = "I'll buy that for a dollar";
+                startWaveDescText.text = "I'd buy that for a dollar";
                 break;
             case 7:
                 startWaveDescText.text = "Big money, big prizes, I love it!";

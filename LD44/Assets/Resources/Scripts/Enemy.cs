@@ -371,7 +371,7 @@ public class Enemy : MonoBehaviour
                 blood.transform.position = transform.position;
                 GameObject bloodSprite = Instantiate(ResourceLoader.instance.bloodSprite);
                 bloodSprite.transform.position = transform.position;
-                CameraShake.instance.trauma += 0.4f;
+                CameraShake.instance.trauma += 0.35f;
                 AudioManager.instance.PlaySound("Thud");
             }
         }
@@ -387,7 +387,7 @@ public class Enemy : MonoBehaviour
                 blood.transform.position = transform.position;
                 GameObject bloodSprite = Instantiate(ResourceLoader.instance.bloodSprite);
                 bloodSprite.transform.position = transform.position;
-                CameraShake.instance.trauma += 0.8f;
+                CameraShake.instance.trauma += 0.7f;
                 AudioManager.instance.PlaySound("thud2");
             }
         }
