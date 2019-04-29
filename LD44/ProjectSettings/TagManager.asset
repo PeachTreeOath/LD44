@@ -58,3 +58,6 @@ TagManager:
   - name: Tongue
     uniqueID: 1717646953
     locked: 0
+  - name: Icon
+    uniqueID: 20979279
+    locked: 0
