@@ -12,11 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizard
       objectReference: {fileID: 0}
-    - target: {fileID: 8070527911907475038, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
-        type: 3}
-      propertyPath: timeInStun
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4493750556487170640, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
         type: 3}
       propertyPath: m_Sprite
@@ -77,6 +72,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070527911907475038, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
+        type: 3}
+      propertyPath: timeInStun
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070527911907475038, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070527911907475038, guid: 25807d1e0cd7fb149b34cb98a990dbc5,
+        type: 3}
+      propertyPath: throwSpeed
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25807d1e0cd7fb149b34cb98a990dbc5, type: 3}
