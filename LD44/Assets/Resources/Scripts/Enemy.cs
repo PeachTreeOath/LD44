@@ -367,6 +367,10 @@ public class Enemy : MonoBehaviour
             if (newVelocity > minimumCollisionVelocityForDeath)
             {
                 isCorpse = true;
+                GameObject blood = Instantiate(ResourceLoader.instance.bloodParticles);
+                blood.transform.position = transform.position;
+                GameObject bloodSprite = Instantiate(ResourceLoader.instance.bloodSprite);
+                bloodSprite.transform.position = transform.position;
                 CameraShake.instance.trauma += 0.4f;
                 AudioManager.instance.PlaySound("Splat");
             }
@@ -379,6 +383,10 @@ public class Enemy : MonoBehaviour
             if (GetPastHighestVelocity() > minimumCollisionVelocityForDeath)
             {
                 Die();
+                GameObject blood = Instantiate(ResourceLoader.instance.bloodParticles);
+                blood.transform.position = transform.position;
+                GameObject bloodSprite = Instantiate(ResourceLoader.instance.bloodSprite);
+                bloodSprite.transform.position = transform.position;
                 CameraShake.instance.trauma += 0.8f;
                 AudioManager.instance.PlaySound("Thud");
             }
