@@ -108,6 +108,11 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
+    public void playStompSound()
+    {
+        AudioManager.instance.PlaySound("wood");
+    }
+
     private Vector3? GetCurrentMousePosition()
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
