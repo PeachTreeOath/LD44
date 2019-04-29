@@ -83,58 +83,6 @@ public class Enemy : MonoBehaviour
 
     public float minimumCollisionVelocityForDeath;
 
-    private EnemyState selfDetermineState()
-    {
-        if (goldCarried >= maxGoldCapacity)
-        {
-            return EnemyState.LEAVING_WITH_GOLD;
-        }
-
-        /*else if () { // enemy is within range of a gold pile
-          return EnemyState.GATHERING_GOLD;
-        }*/
-        else return EnemyState.SEEKING_GOLD;
-    }
-
-    private void doStateAction()
-    {
-        if (enemyState == null)
-        {
-            enemyState = selfDetermineState();
-        }
-
-        switch (enemyState)
-        {
-            case EnemyState.SEEKING_GOLD:
-                seekingGoldBehavior();
-                break;
-            case EnemyState.GATHERING_GOLD:
-                gatheringGoldBehavior();
-                break;
-            case EnemyState.LEAVING_WITH_GOLD:
-                leavingWithGoldBehavior();
-                break;
-            case EnemyState.STRUGGLING:
-                strugglingBehavior();
-                break;
-            case EnemyState.BUMPED:
-                bumpedBehavior();
-                break;
-            case EnemyState.DAMAGED:
-                damagedBehavior();
-                break;
-            case EnemyState.DYING:
-                dyingBehavior();
-                break;
-            case EnemyState.BEING_FLUNG:
-                beingFlungBehavior();
-                break;
-            default:
-                throw new System.Exception();
-        }
-    }
-
-
     // Use this for initialization
     void Start()
     {
@@ -161,6 +109,7 @@ public class Enemy : MonoBehaviour
                 isStunned = true;
                 isThrown = false;
                 secondsStunned = 0f;
+                AudioManager.instance.PlaySound("Oof_Light");
             }
         }
         else if (isStunned)
@@ -268,6 +217,8 @@ public class Enemy : MonoBehaviour
 
         if (previousPositions.Count != 0)
             body.velocity = (totalVelocity / previousPositions.Count) * throwSpeed;
+
+        AudioManager.instance.PlaySound("Whoosh");
     }
 
     public Vector2 GetEnemyPosition()
@@ -286,6 +237,8 @@ public class Enemy : MonoBehaviour
                 secondsGrabbingGold = 0f;
                 heldTreasure = TreasureController.instance.TakeTreasure(otherCollider.gameObject);
                 hasGold = true;
+                AudioManager.instance.PlaySound("Ch_Ching");
+
             }
             else
             {
@@ -319,6 +272,7 @@ public class Enemy : MonoBehaviour
             {
                 Die();
                 CameraShake.instance.trauma += 0.2f;
+                AudioManager.instance.PlaySound("Splat");
             }
         }
         else
@@ -328,6 +282,7 @@ public class Enemy : MonoBehaviour
             {
                 Die();
                 CameraShake.instance.trauma += 0.2f;
+                AudioManager.instance.PlaySound("Thud");
             }
         }
     }
@@ -350,44 +305,5 @@ public class Enemy : MonoBehaviour
     {
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
-
-    void seekingGoldBehavior()
-    {
-
-    }
-
-    void gatheringGoldBehavior()
-    {
-
-    }
-
-    void leavingWithGoldBehavior()
-    {
-
-    }
-
-    void strugglingBehavior()
-    {
-
-    }
-
-    void bumpedBehavior()
-    {
-
-    }
-
-    void damagedBehavior()
-    {
-
-    }
-
-    void dyingBehavior()
-    {
-
-    }
-
-    void beingFlungBehavior()
-    {
-
-    }
+    
 }
