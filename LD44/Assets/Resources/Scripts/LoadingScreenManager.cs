@@ -69,6 +69,13 @@ public class LoadingScreenManager : MonoBehaviour
 				}
 				if (hasMoved && hasGrabbed)
 				{
+					thisState = LoadingScreenState.Pause;
+				}
+				break;
+			case LoadingScreenState.Pause:
+				timer--;
+				if (timer < 1)
+				{
 					thisState = LoadingScreenState.Test;
 
 					movementInstr.SetActive(false);
@@ -82,13 +89,6 @@ public class LoadingScreenManager : MonoBehaviour
 						(playerObjInScene.transform.position - lowerSpawnPt).sqrMagnitude ?
 							upperSpawnPt :
 							lowerSpawnPt;
-				}
-				break;
-			case LoadingScreenState.Pause:
-				timer--;
-				if (timer < 1)
-				{
-					thisState = LoadingScreenState.Test;
 				}
 				break;
 			case LoadingScreenState.Test:
