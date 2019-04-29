@@ -14,6 +14,7 @@ public class TongueTip : MonoBehaviour
     private PlayerController player;
     private Enemy tonguedEnemy;
     private float tongueLength = 5;
+    private bool isMouseDown;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -115,6 +116,16 @@ public class TongueTip : MonoBehaviour
         isEnemyTongued = false;
     }
 
+    public void TrackMouseDown()
+    {
+        isMouseDown = true;
+    }
+
+    public void TrackMouseUp()
+    {
+        isMouseDown = false;
+    }
+
     /// <summary>
     /// Sent when another object enters a trigger collider attached to this
     /// object (2D physics only).
@@ -122,7 +133,7 @@ public class TongueTip : MonoBehaviour
     /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (tonguedEnemy || isTongueReturning)
+        if (tonguedEnemy || !isMouseDown)
             return;
 
         tonguedEnemy = other.GetComponentInChildren<Enemy>();

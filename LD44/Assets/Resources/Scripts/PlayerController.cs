@@ -78,6 +78,7 @@ public class PlayerController : Singleton<PlayerController>
             {
                 if (controlsEnabled && Input.GetButtonDown("Fire1"))
                 {
+                    tip.TrackMouseDown();
                     FireTongue();
                 }
             }
@@ -91,6 +92,7 @@ public class PlayerController : Singleton<PlayerController>
 
             if (Input.GetButtonUp("Fire1"))
             {
+                tip.TrackMouseUp();
                 ReleaseTonguedEnemy();
             }
 

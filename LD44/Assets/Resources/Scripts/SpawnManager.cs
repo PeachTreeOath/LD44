@@ -79,7 +79,7 @@ public class SpawnManager : Singleton<SpawnManager>
             // Spawning enemies in random locations
             Instantiate(enemyTypes[randomEnemyType], allChildren[randomSpawnPointNum].transform.position, Quaternion.identity);
             enemyAmount++;
-            Debug.Log("Number of enemies: " + enemyAmount);
+            //Debug.Log("Number of enemies: " + enemyAmount);
             if (enemyAmount >= enemyAmountMax)
             {
                 spawnEnemyOn = false;
