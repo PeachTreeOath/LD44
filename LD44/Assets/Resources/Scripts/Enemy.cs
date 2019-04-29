@@ -258,6 +258,7 @@ public class Enemy : MonoBehaviour
             TreasureController.instance.DestoryTreasure(heldTreasure);
             hasGold = false;
             Die();
+            AudioManager.instance.PlaySound("Gold_Escape");
         }
     }
 

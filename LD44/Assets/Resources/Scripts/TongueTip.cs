@@ -94,7 +94,12 @@ public class TongueTip : MonoBehaviour
 
     public void ReleaseEnemy()
     {
-//        Debug.Log("ReleaseEnemy");
+
+        if (isTongueExtending)
+        {
+            AudioManager.instance.PlaySound("Tongue_Retract");
+        }
+        //        Debug.Log("ReleaseEnemy");
         if (tonguedEnemy != null)
         {
             tonguedEnemy.ReleaseGrab();

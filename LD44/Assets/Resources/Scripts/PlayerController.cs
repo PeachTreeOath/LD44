@@ -137,6 +137,8 @@ public class PlayerController : Singleton<PlayerController>
         tip.isPlayerTongueing = true;
         tip.isTongueExtending = true;
         // 3. if the tongue tip touches an enemy, call something to start the fishing minigame (this can be a blank method for now)
+
+        AudioManager.instance.PlaySound("Tongue_Extend");
     }
 
     private void ReleaseTonguedEnemy()
