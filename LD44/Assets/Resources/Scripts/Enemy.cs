@@ -272,7 +272,7 @@ public class Enemy : MonoBehaviour
             if (newVelocity.magnitude > minimumCollisionVelocityForDeath)
             {
                 Die();
-                CameraShake.instance.trauma += 0.2f;
+                CameraShake.instance.trauma += 0.5f;
                 AudioManager.instance.PlaySound("Splat");
             }
         }
@@ -282,7 +282,7 @@ public class Enemy : MonoBehaviour
             if (body.velocity.magnitude > minimumCollisionVelocityForDeath)
             {
                 Die();
-                CameraShake.instance.trauma += 0.2f;
+                CameraShake.instance.trauma += 1f;
                 AudioManager.instance.PlaySound("Thud");
             }
         }

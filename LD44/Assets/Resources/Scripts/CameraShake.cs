@@ -43,7 +43,7 @@ public class CameraShake : Singleton<CameraShake>
     // Update is called once per frame
     void Update()
     {
-        TurnShakeOnOff();
+        //TurnShakeOnOff();
 
         Shake();
     }
@@ -77,18 +77,18 @@ public class CameraShake : Singleton<CameraShake>
         }
     }
 
-    private void TurnShakeOnOff()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            trauma += 1.0f;
-        }
+    //private void TurnShakeOnOff()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.C))
+    //    {
+    //        trauma += 1.0f;
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            trauma += 0.5f;
-        }
-    }
+    //    if (Input.GetKeyDown(KeyCode.V))
+    //    {
+    //        trauma += 0.5f;
+    //    }
+    //}
 
 
 }

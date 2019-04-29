@@ -150,6 +150,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public void OnCollisionEnter2D(Collision2D other)
     {
+        /*
         Enemy otherEnemy = other.gameObject.GetComponent<Enemy>();
         if (otherEnemy)
         {
@@ -164,5 +165,6 @@ public class PlayerController : Singleton<PlayerController>
             body.AddForce(knockbackVector, ForceMode2D.Impulse);
 
         }
+        */
     }
 }

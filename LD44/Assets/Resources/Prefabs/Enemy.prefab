@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 1307140806}
   m_Layer: 10
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,12 +220,12 @@ MonoBehaviour:
   walkSpeed: 0.5
   timeToRecalcTarget: 3
   timeInStun: 3
-  throwSpeed: 50
-  moveTowardsSpeed: 10
+  throwSpeed: 70
+  moveTowardsSpeed: 12
   speedToRecoverFromThrow: 1
   hasMoneyIcon: {fileID: 1811901497}
   body: {fileID: 0}
-  minimumCollisionVelocityForDeath: 1
+  minimumCollisionVelocityForDeath: 0.9
 --- !u!58 &5500546023920590730
 CircleCollider2D:
   m_ObjectHideFlags: 0

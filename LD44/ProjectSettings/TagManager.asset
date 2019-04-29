@@ -6,6 +6,8 @@ TagManager:
   tags:
   - gold_pile
   - door
+  - Enemy
+  - LoadingSceneWall
   layers:
   - Default
   - TransparentFX
@@ -60,4 +62,7 @@ TagManager:
     locked: 0
   - name: Tongue
     uniqueID: 1717646953
+    locked: 0
+  - name: Icon
+    uniqueID: 20979279
     locked: 0
