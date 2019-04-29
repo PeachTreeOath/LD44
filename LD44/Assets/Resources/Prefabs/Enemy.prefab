@@ -221,12 +221,12 @@ MonoBehaviour:
   timeToRecalcTarget: 3
   timeInStun: 3
   timeInCorpse: 0.5
-  throwSpeed: 70
-  moveTowardsSpeed: 12
+  throwSpeed: 75
+  moveTowardsSpeed: 14
   speedToRecoverFromThrow: 1
   hasMoneyIcon: {fileID: 1811901497}
   body: {fileID: 0}
-  minimumCollisionVelocityForDeath: 0.9
+  minimumCollisionVelocityForDeath: 10
 --- !u!58 &5500546023920590730
 CircleCollider2D:
   m_ObjectHideFlags: 0
