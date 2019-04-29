@@ -91,9 +91,12 @@ public class AudioManager : Singleton<AudioManager>
         }
         else if (sceneName == "GameOverScreen")
         {
-            PlayMusic("mimic_game_over");
+            PlaySound("mimic_game_over");
         }
-
+        else if (sceneName == "VictoryScreen")
+        {
+            PlaySound("mimic_victory");
+        }
     }
 
 	public void UpdateOverallVolume()
