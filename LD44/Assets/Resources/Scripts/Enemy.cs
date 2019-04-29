@@ -363,6 +363,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private bool isMarkedForDeath;
+
     public void OnCollisionEnter2D(Collision2D other)
     {
         Enemy otherEnemy = other.gameObject.GetComponent<Enemy>();
@@ -406,7 +408,11 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         PlayerController.instance.tip.ReleaseEnemy();
-        SpawnManager.instance.NotifyEnemyDead();
+        if (!isMarkedForDeath)
+        {
+            SpawnManager.instance.NotifyEnemyDead();
+            isMarkedForDeath = true;
+        }
 
         if (hasGold)
         {

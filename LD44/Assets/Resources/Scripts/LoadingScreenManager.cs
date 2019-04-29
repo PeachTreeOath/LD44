@@ -58,8 +58,7 @@ public class LoadingScreenManager : MonoBehaviour
 		switch (thisState)
 		{
 			case LoadingScreenState.Practice:
-				if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||
-					Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+				if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 				{
 					hasMoved = true;
 				}
@@ -108,10 +107,9 @@ public class LoadingScreenManager : MonoBehaviour
 				SceneManager.LoadScene("Game");
 				break;
 		}
-		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||
-			Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 		{
-			hasMoved = true;
+            hasMoved = true;
 		}
 		if (Input.GetMouseButton(0))
 		{
