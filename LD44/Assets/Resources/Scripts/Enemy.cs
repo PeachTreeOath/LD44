@@ -26,7 +26,8 @@ public class Enemy : MonoBehaviour
     private bool isStunned;
     private bool isCorpse;
     [HideInInspector] public Rigidbody2D body;
-    private Queue<Vector3> previousPositions = new Queue<Vector3>();
+    private Queue<Vector3> previousMovementVectors = new Queue<Vector3>();
+    private Queue<float> previousVelocities = new Queue<float>();
     private Vector3 previousPosition;
 
     private bool hasGold = false;
@@ -200,9 +201,14 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        previousPositions.Enqueue(body.position - (Vector2)previousPosition);
-        if (previousPositions.Count > 5)
-            previousPositions.Dequeue();
+        previousMovementVectors.Enqueue(body.position - (Vector2)previousPosition);
+        previousVelocities.Enqueue(body.velocity.magnitude);
+
+        if (previousMovementVectors.Count > 5)
+            previousMovementVectors.Dequeue();
+
+        if (previousVelocities.Count > 5)
+            previousVelocities.Dequeue();
 
         previousPosition = body.position;
     }
@@ -221,22 +227,98 @@ public class Enemy : MonoBehaviour
 
         Vector3 totalVelocity = Vector3.zero;
 
-        foreach (Vector3 velocity in previousPositions)
+        foreach (Vector3 velocity in previousMovementVectors)
         {
             totalVelocity += velocity;
         }
 
-        if (previousPositions.Count != 0)
-            body.velocity = (totalVelocity / previousPositions.Count) * throwSpeed;
+        if (previousMovementVectors.Count != 0)
+            body.velocity = GetPastAverageVelocity() * throwSpeed;
 
         AudioManager.instance.PlaySound("Whoosh");
     }
+
+    public Vector3 GetPastAverageVelocity()
+    {
+        Vector3 totalVelocity = Vector3.zero;
+
+        foreach (Vector3 velocity in previousMovementVectors)
+        {
+            totalVelocity += velocity;
+        }
+
+        if (previousMovementVectors.Count != 0)
+            totalVelocity = totalVelocity / previousMovementVectors.Count;
+
+        return totalVelocity;
+    }
+
+    public float GetPastHighestVelocity()
+    {
+        float highestVelocity = 0;
+
+        foreach (float velocity in previousVelocities)
+        {
+            highestVelocity = Mathf.Max(highestVelocity, velocity);
+        }
+
+        return highestVelocity;
+    }
+
+    /*
+        public void ReleaseGrab()
+    {
+        //        Debug.Log("releaseGrab");
+
+        isGrabbed = false;
+        isThrown = true;
+
+        Vector3 totalVelocity = Vector3.zero;
+
+        foreach (Vector3 velocity in previousMovementVectors)
+        {
+            totalVelocity += velocity;
+        }
+
+        if (previousMovementVectors.Count != 0)
+            body.velocity = GetPastAverageVelocity() * throwSpeed;
+
+        AudioManager.instance.PlaySound("Whoosh");
+    }
+
+    public Vector3 GetPastAverageVelocity()
+    {
+        Vector3 totalVelocity = Vector3.zero;
+
+        foreach (Vector3 velocity in previousMovementVectors)
+        {
+            totalVelocity += velocity;
+        }
+
+        if (previousMovementVectors.Count != 0)
+            totalVelocity = totalVelocity / previousMovementVectors.Count;
+
+        return totalVelocity;
+    }
+
+    public float GetPastHighestVelocity()
+    {
+        float highestVelocity = 0;
+
+        foreach (Vector3 velocity in previousMovementVectors)
+        {
+            highestVelocity = Mathf.Max(highestVelocity, velocity.magnitude);
+        }
+
+        return highestVelocity;
+    }
+    */
+
 
     public Vector2 GetEnemyPosition()
     {
         return body.position;
     }
-
 
     public void OnTriggerStay2D(Collider2D otherCollider)
     {
@@ -257,8 +339,6 @@ public class Enemy : MonoBehaviour
                 secondsGrabbingGold += Time.deltaTime;
             }
         }
-
-
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -278,22 +358,28 @@ public class Enemy : MonoBehaviour
         Enemy otherEnemy = other.gameObject.GetComponent<Enemy>();
         if (otherEnemy)
         {
-            Vector3 newVelocity = body.velocity - otherEnemy.body.velocity;
-            Debug.LogWarning("ENEMY TO ENEMY COLLISION AT " + newVelocity.magnitude);
-            if (newVelocity.magnitude > minimumCollisionVelocityForDeath)
+            //Vector3 newVelocity = body.velocity - otherEnemy.body.velocity;
+            //Vector3 newVelocity = GetPastAverageVelocity() - otherEnemy.GetPastAverageVelocity();
+            float newVelocity = GetPastHighestVelocity() + otherEnemy.GetPastHighestVelocity();
+            //Debug.LogWarning("ENEMY TO ENEMY COLLISION AT " + newVelocity.magnitude);
+            Debug.LogWarning("ENEMY TO ENEMY COLLISION AT " + newVelocity);
+            //if (newVelocity.magnitude > minimumCollisionVelocityForDeath)
+            if (newVelocity > minimumCollisionVelocityForDeath)
             {
                 isCorpse = true;
-                CameraShake.instance.trauma += 0.5f;
+                CameraShake.instance.trauma += 0.4f;
                 AudioManager.instance.PlaySound("Splat");
             }
         }
         else
         {
-            Debug.LogWarning("OTHER COLLISION AT " + body.velocity.magnitude);
-            if (body.velocity.magnitude > minimumCollisionVelocityForDeath)
+            //Debug.LogWarning("OTHER COLLISION AT " + body.velocity.magnitude);
+            //if (GetPastAverageVelocity().magnitude > minimumCollisionVelocityForDeath)
+            Debug.LogWarning("OTHER COLLISION AT " + GetPastHighestVelocity());
+            if (GetPastHighestVelocity() > minimumCollisionVelocityForDeath)
             {
                 Die();
-                CameraShake.instance.trauma += 1f;
+                CameraShake.instance.trauma += 0.8f;
                 AudioManager.instance.PlaySound("Thud");
             }
         }
@@ -317,5 +403,5 @@ public class Enemy : MonoBehaviour
     {
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
-    
+
 }
