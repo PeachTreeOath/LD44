@@ -365,6 +365,16 @@ PrefabInstance:
       propertyPath: m_text
       value: Restart Game
       objectReference: {fileID: 0}
+    - target: {fileID: 4276438835195832748, guid: a43f1b503dc8f48f483873ee0d23b5dd,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276438835195832748, guid: a43f1b503dc8f48f483873ee0d23b5dd,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.7019608
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a43f1b503dc8f48f483873ee0d23b5dd, type: 3}
 --- !u!1 &402463952
