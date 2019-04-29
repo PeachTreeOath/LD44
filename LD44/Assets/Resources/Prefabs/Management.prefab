@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7394523746968729968}
   - component: {fileID: 7394523746968729967}
   - component: {fileID: 592650767271156127}
+  - component: {fileID: 73815698}
+  - component: {fileID: 73815697}
   m_Layer: 0
   m_Name: Management
   m_TagString: Untagged
@@ -60,6 +62,8 @@ MonoBehaviour:
   mimicClosedSprite: {fileID: 21300000, guid: fe54ea1c3ad79437fb2a2a7f530dd196, type: 3}
   mimicOpenedSprite: {fileID: 21300000, guid: b2b80c5c858f14b82817e3c7f6e64895, type: 3}
   lickParticles: {fileID: 0}
+  bloodParticles: {fileID: 0}
+  bloodSprite: {fileID: 0}
 --- !u!114 &592650767271156127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,8 +82,30 @@ MonoBehaviour:
   - {fileID: 777326490716732763, guid: 0af0924f398c52f448f00d67ab425b80, type: 3}
   spawnEnemyOn: 1
   inWave: 0
-  spawnDelay: 3
+  spawnDelay: 2
   spawnTimer: 0
   waveDelay: 0
-  waveTimer: 5
-  waveTimerReset: 5
+  waveTimer: 4
+  waveTimerReset: 4
+--- !u!81 &73815698
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394523746968729966}
+  m_Enabled: 1
+--- !u!114 &73815697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394523746968729966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f2ba92ba4f3f141ab270ed4fdd0fe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mute: 0
+  musicVolume: 1

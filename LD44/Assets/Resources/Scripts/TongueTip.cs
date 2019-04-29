@@ -122,7 +122,7 @@ public class TongueTip : MonoBehaviour
     /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (tonguedEnemy)
+        if (tonguedEnemy || isTongueReturning)
             return;
 
         tonguedEnemy = other.GetComponentInChildren<Enemy>();

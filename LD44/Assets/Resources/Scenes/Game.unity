@@ -120,34 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &73815696 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7394523746968729966, guid: f2e747c9248ef4cceb15bd606511b0a1,
-    type: 3}
-  m_PrefabInstance: {fileID: 8621300541981909276}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &73815697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 73815696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78f2ba92ba4f3f141ab270ed4fdd0fe5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mute: 0
-  musicVolume: 1
---- !u!81 &73815698
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 73815696}
-  m_Enabled: 1
 --- !u!1 &1365485503 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7010237044064149058, guid: 94cf2812907571745a87f10976c451fc,
@@ -1101,10 +1073,5 @@ PrefabInstance:
       propertyPath: spawnPointParent
       value: 
       objectReference: {fileID: 1365485503}
-    - target: {fileID: 592650767271156127, guid: f2e747c9248ef4cceb15bd606511b0a1,
-        type: 3}
-      propertyPath: spawnDelay
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2e747c9248ef4cceb15bd606511b0a1, type: 3}

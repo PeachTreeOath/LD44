@@ -31,10 +31,10 @@ public class SpawnManager : Singleton<SpawnManager>
     public float spawnDelay = 3.0f;
     public float spawnTimer = 0.0f;
     public float waveDelay = 0.0f;
-    public float waveTimer = 5.0f;
+    public float waveTimer = 4.0f;
 
     [SerializeField]
-    private float waveTimerReset = 5.0f;
+    private float waveTimerReset = 4.0f;
 
     protected override void Awake()
     {
@@ -114,7 +114,7 @@ public class SpawnManager : Singleton<SpawnManager>
             if (waveTimer <= waveDelay)
             {
                 WaveSpawn();
-                waveTimer = 5.0f;
+                waveTimer = 4.0f;
             }
         }
     }
@@ -132,6 +132,7 @@ public class SpawnManager : Singleton<SpawnManager>
         spawnDelay -= 0.25f;
         enemyAmount = 0;
         enemiesDead = 0;
+        spawnTimer = -1;
 
         UITextManager.instance.SetWave(waveNumber);
         UITextManager.instance.SetEnemiesLeft(enemyAmountMax);
