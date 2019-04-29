@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class Enemy : MonoBehaviour
     private float secondsAsCorpse = 0f;
     private GameObject heldTreasure = null;
     private Animator anim;
+    private SpriteRenderer sprRenderer;
 
     public enum EnemyState
     {
@@ -57,6 +59,7 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         anim = GetComponent<Animator>();
+        sprRenderer = GetComponent<SpriteRenderer>();
     }
 
     private EnemyState enemyState;
@@ -97,8 +100,12 @@ public class Enemy : MonoBehaviour
         // The Money icon should be off by default
         hasMoneyIcon.SetActive(false);
         isStunnedIcon.SetActive(false);
-    }
 
+        if (SceneManager.GetActiveScene().name.Equals("LoadingScene"))
+        {
+            sprRenderer.color = new Color(sprRenderer.color.r, sprRenderer.color.g, sprRenderer.color.b, 1);
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -382,7 +389,7 @@ public class Enemy : MonoBehaviour
         {
             //Debug.LogWarning("OTHER COLLISION AT " + body.velocity.magnitude);
             //if (GetPastAverageVelocity().magnitude > minimumCollisionVelocityForDeath)
-           // Debug.LogWarning("OTHER COLLISION AT " + GetPastHighestVelocity());
+            // Debug.LogWarning("OTHER COLLISION AT " + GetPastHighestVelocity());
             if (GetPastHighestVelocity() > minimumCollisionVelocityForDeath)
             {
                 Die();
@@ -404,7 +411,7 @@ public class Enemy : MonoBehaviour
         if (hasGold)
         {
             TreasureController.instance.DropTreasure(heldTreasure, transform.position);
-          //  Debug.Log("Dropping treasure.");
+            //  Debug.Log("Dropping treasure.");
             AudioManager.instance.PlaySound("coins");
         }
         Destroy(gameObject);
@@ -414,6 +421,7 @@ public class Enemy : MonoBehaviour
     public void OnTriggerExit2D(Collider2D otherCollider)
     {
         gameObject.layer = LayerMask.NameToLayer("Default");
+        sprRenderer.color = new Color(sprRenderer.color.r, sprRenderer.color.g, sprRenderer.color.b, 1);
     }
 
 }
