@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     public float speedToRecoverFromThrow = 1f;
 
     public GameObject hasMoneyIcon;
+    public GameObject isStunnedIcon;
 
     private bool isGrabbed;
     private bool isThrown;
@@ -95,6 +96,7 @@ public class Enemy : MonoBehaviour
 
         // The Money icon should be off by default
         hasMoneyIcon.SetActive(false);
+        isStunnedIcon.SetActive(false);
     }
 
 
@@ -132,7 +134,11 @@ public class Enemy : MonoBehaviour
             {
                 anim.speed = 1;
                 isStunned = false;
-
+                isStunnedIcon.SetActive(false);
+            }
+            else
+            {
+                isStunnedIcon.SetActive(true);
             }
         }
         else if (!hasGold)

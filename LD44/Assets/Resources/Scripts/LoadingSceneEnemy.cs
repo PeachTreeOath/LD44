@@ -171,7 +171,6 @@ public class LoadingSceneEnemy : MonoBehaviour
 			{
 				anim.speed = 1;
 				isStunned = false;
-
 			}
 		}
 		else if (!hasGold)
