@@ -840,4 +840,12 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.75
+    functionName: playStompSound
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: be9219de6e6cc40209f4cdc5960688f1,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
