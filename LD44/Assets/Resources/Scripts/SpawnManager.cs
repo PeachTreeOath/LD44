@@ -84,15 +84,13 @@ public class SpawnManager : Singleton<SpawnManager>
             {
                 spawnEnemyOn = false;
             }
-
         }
-
     }
 
     public void NotifyEnemyDead()
     {
         enemiesDead++;
-        enemyAmount--;
+        // enemyAmount--;
         UITextManager.instance.SetEnemiesLeft(enemyAmountMax - enemiesDead);
     }
 
@@ -123,12 +121,12 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void WaveSpawn()
     {
-
-
         enemyAmountMax += 2;
         waveNumber++;
         spawnEnemyOn = true;
         spawnDelay -= 0.25f;
+        enemyAmount = 0;
+        enemiesDead = 0;
 
         UITextManager.instance.SetWave(waveNumber);
         UITextManager.instance.SetEnemiesLeft(enemyAmountMax);
