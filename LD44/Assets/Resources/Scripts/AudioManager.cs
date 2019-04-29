@@ -32,16 +32,20 @@ public class AudioManager : Singleton<AudioManager>
         soundMap = new Dictionary<string, AudioClip>();
         soundMixer = new Dictionary<string, float>
         {
-            { "lava_royale_2", .45f },
-            { "lava_burn", .7f },
-            { "jump", .5f },
-            { "car_slide", .9f },
-            { "car_bump", .7f },
-            { "car_honk", .1f },
-            { "checkpoint", .5f },
-            { "explosion", .5f },
-            { "ped_death", .3f },
-            { "possession", 1.5f }
+            { "mimic_murder", .7f  },
+            { "Ch_Ching", .7f },
+            { "Game_Over", .7f  },
+            { "Gold_Escape", .7f  },
+            { "mimic_game_over", .7f },
+            { "Oof", .7f  },
+            { "Splat", .7f  },
+            { "Thud", .7f  },
+            { "title_screen", .7f  },
+            { "Tongue_Contact", .7f  },
+            { "Tongue_Extend", .7f  },
+            { "Tongue_Retract", .7f  },
+            { "Whoosh", .7f }
+
 
         };
 
@@ -77,6 +81,10 @@ public class AudioManager : Singleton<AudioManager>
         {
             PlayMusic("title_screen");
         }
+        else if (sceneName == "LoadingScene")
+        {
+            PlayMusic("title_screen");
+        }
         else if (sceneName == "Game")
         {
             PlayMusic("mimic_murder");
@@ -90,8 +98,8 @@ public class AudioManager : Singleton<AudioManager>
 
 	public void UpdateOverallVolume()
 	{
-        //musicVolume = VolumeListener.volumeLevel;
-        musicChannel.volume = VolumeListener.volumeLevel * soundMixer["lava_royale_2"];
+        musicChannel.volume = VolumeListener.volumeLevel;
+        //musicChannel.volume = VolumeListener.volumeLevel * soundMixer["music"];
         soundChannel.volume = VolumeListener.volumeLevel;
     }
 
@@ -103,6 +111,7 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayMusic(string name)
     {
         musicChannel.clip = soundMap[name];
+        //musicChannel.volume = soundMixer.ContainsKey(name) ? soundMixer[name] : soundMixer["music"];
         musicChannel.volume = soundMixer.ContainsKey(name) ? soundMixer[name] : 1;
         musicChannel.loop = true;
         musicChannel.Play();
