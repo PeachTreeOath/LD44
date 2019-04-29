@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7575165114253825343}
   - component: {fileID: 2419293479252767038}
   m_Layer: 0
-  m_Name: LickParticles
+  m_Name: BloodParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,8 +238,8 @@ ParticleSystem:
       maxColor: {r: 0.35294116, g: 0.74509805, b: 0.5681563, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 1, b: 0.96936965, a: 1}
-        key1: {r: 0.6933962, g: 0.94621605, b: 1, a: 1}
+        key0: {r: 1, g: 0, b: 0.0094127655, a: 1}
+        key1: {r: 0.6320754, g: 0.08050018, b: 0.16608599, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -298,7 +298,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 2
-      minScalar: 0.15
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1052,8 +1052,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.021278381
-          value: 0.16216278
+          time: 0
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
