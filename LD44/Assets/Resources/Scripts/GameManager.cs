@@ -55,7 +55,7 @@ public class GameManager : Singleton<GameManager>
             // to turn on the GameOver UI panel.
             CurrentState = GameState.GameOver;
             //UITextManager.instance.OnGameOver();
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOverScreen");
         }
         else
         {
