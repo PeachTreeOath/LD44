@@ -34,27 +34,32 @@ public class TongueTip : MonoBehaviour
             if (isTongueExtending)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-                BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, targetPosition, moveSpeed * 0.5f * Time.deltaTime);
-                BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, targetPosition, moveSpeed * 0.25f * Time.deltaTime);
+                //BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5f, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
+                //BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
             }
             if (isTongueReturning)
             {
                 transform.position = Vector3.MoveTowards(transform.position, returnPosition, moveSpeed * Time.deltaTime);
-                BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, returnPosition, moveSpeed * 1.5f * Time.deltaTime);
-                BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, returnPosition, moveSpeed * 1.5f * Time.deltaTime);
+                //BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5f, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
+                //BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, GetPerpendicular(BezierLineRenderer.instance.point3.position, BezierLineRenderer.instance.point0.position, Random.Range(-5f, 5f))[Random.Range(0, 1)], moveSpeed * 10f * Time.deltaTime);
             }
+
+            if(BezierLineRenderer.instance.point1.position != targetPosition)
+                BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, transform.position, moveSpeed * 0.8f * Time.deltaTime);
+
+            if (BezierLineRenderer.instance.point2.position != targetPosition)
+                BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, transform.position, moveSpeed * 0.4f * Time.deltaTime);
+
 
             if (isEnemyTongued && tonguedEnemy)
             {
                 transform.position = tonguedEnemy.GetEnemyPosition();
-                BezierLineRenderer.instance.point1.position = Vector3.MoveTowards(BezierLineRenderer.instance.point1.position, transform.position, moveSpeed * 0.6f * Time.deltaTime);
-                BezierLineRenderer.instance.point2.position = Vector3.MoveTowards(BezierLineRenderer.instance.point2.position, transform.position, moveSpeed * 0.3f * Time.deltaTime);
             }
 
             if (targetPosition == transform.position || Vector2.Distance(transform.position, player.transform.position) > tongueLength)
             {
                 isTongueExtending = false;
-                isTongueReturning = true;
+                isTongueReturning = true; //!Input.GetButton("Fire1");
             }
 
             if (isTongueReturning && transform.position == returnPosition)
@@ -63,15 +68,15 @@ public class TongueTip : MonoBehaviour
                 isPlayerTongueing = false;
                 //player.GetComponentInChildren<LineRenderer>().positionCount = 0;
                 GetComponent<SpriteRenderer>().enabled = false;
-                player.tongueLine.enabled = false;
+                player.tongueLine.sortingLayerName = "Hidden";
                 player.spriteRenderer.sprite = ResourceLoader.instance.mimicClosedSprite;
             }
 
-            transform.position = BezierLineRenderer.instance.tipAttachPoint;
+            //transform.position = BezierLineRenderer.instance.tipAttachPoint;
         }
         else
         {
-            transform.position = returnPosition;
+            BezierLineRenderer.instance.point1.position = BezierLineRenderer.instance.point2.position = transform.position = returnPosition;
         }
 
         /* if (isEnemyTongued)
@@ -89,7 +94,7 @@ public class TongueTip : MonoBehaviour
 
     public void ReleaseEnemy()
     {
-        Debug.Log("ReleaseEnemy");
+//        Debug.Log("ReleaseEnemy");
         if (tonguedEnemy != null)
         {
             tonguedEnemy.ReleaseGrab();
@@ -124,5 +129,29 @@ public class TongueTip : MonoBehaviour
             isTongueReturning = false;
             isEnemyTongued = true;
         }
+    }
+
+    private Vector3[] GetPerpendicular(Vector3 p1, Vector3 p2, float magnitude)
+    {
+        /*
+            v = P2 - P1
+            P3 = (-v.y, v.x) / Sqrt(v.x^2 + v.y^2) * h
+            P4 = (-v.y, v.x) / Sqrt(v.x^2 + v.y^2) * -h
+
+            Basically, you first find the vector from P1 to P2. Then to get a perpendicular vector 
+            you take the negative inverse of the vector (switching the axes around and making one negative, 
+            which one you make negative determines the direction). After that, you find the normal of the 
+            perpendicular vector by dividing the vector by it's magnitude (length). Finally, you multiply 
+            by h and -h to get the vectors of the right length in each direction.
+         */
+
+        Vector3 v = p2 - p1;
+        if (v.x == 0 && v.y == 0)
+            return new Vector3[] { p1, p2 };
+
+        Vector3 p3 = new Vector3(-v.y, v.x) / (Mathf.Sqrt(v.x * v.x + v.y * v.y) * magnitude);
+        Vector3 p4 = new Vector3(-v.y, v.x) / (Mathf.Sqrt(v.x * v.x + v.y * v.y) * -magnitude);
+
+        return new Vector3[] { p3, p4 };
     }
 }
