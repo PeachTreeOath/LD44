@@ -67,7 +67,25 @@ public class AudioManager : Singleton<AudioManager>
         }
 
         ToggleMute(mute);
-        PlayMusic("mimic_murder");
+
+        // Create a temporary reference to the current scene.
+        UnityEngine.SceneManagement.Scene currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+
+        // Retrieve the name of this scene.
+        string sceneName = currentScene.name;
+        if (sceneName == "TitleScreen")
+        {
+            PlayMusic("title_screen");
+        }
+        else if (sceneName == "Game")
+        {
+            PlayMusic("mimic_murder");
+        }
+        else if (sceneName == "GameOverScreen")
+        {
+            PlayMusic("mimic_game_over");
+        }
+
     }
 
 	public void UpdateOverallVolume()
