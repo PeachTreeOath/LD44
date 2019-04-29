@@ -8,6 +8,7 @@ public class UITextManager : Singleton<UITextManager>
 
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI startWaveText;
+    public TextMeshProUGUI startWaveDescText;
     public TextMeshProUGUI enemiesLeftText;
     private float totalAnimationTime = 2;
 
@@ -29,6 +30,40 @@ public class UITextManager : Singleton<UITextManager>
     {
         waveText.text = "Wave " + wave + " of 10";
         DoStartWaveAnimation(wave);
+
+        switch(wave)
+        {
+            case 1:
+                startWaveDescText.text = "Kill adventurers and defend your treasure";
+                break;
+            case 2:
+                startWaveDescText.text = "Your treasure is your lifeblood, don't let it go";
+                break;
+            case 3:
+                startWaveDescText.text = "They're after your gold...";
+                break;
+            case 4:
+                startWaveDescText.text = "You're after their blood...";
+                break;
+            case 5:
+                startWaveDescText.text = "It's starting to get crowded in here";
+                break;
+            case 6:
+                startWaveDescText.text = "I'll buy that for a dollar";
+                break;
+            case 7:
+                startWaveDescText.text = "Big money, big prizes, I love it!";
+                break;
+            case 8:
+                startWaveDescText.text = "The wheel of fate is turning!";
+                break;
+            case 9:
+                startWaveDescText.text = "Decide the destiny!";
+                break;
+            case 10:
+                startWaveDescText.text = "Can't escape from crossing fate!";
+                break;
+        }
     }
 
     public void DoStartWaveAnimation(int wave)
@@ -44,6 +79,7 @@ public class UITextManager : Singleton<UITextManager>
         {
             timeToAnimate += Time.deltaTime;
             startWaveText.color = new Color(startWaveText.color.r, startWaveText.color.g, startWaveText.color.b, totalAnimationTime - timeToAnimate);
+            startWaveDescText.color = new Color(startWaveDescText.color.r, startWaveDescText.color.g, startWaveDescText.color.b, totalAnimationTime - timeToAnimate);
             yield return null;
         }
     }
