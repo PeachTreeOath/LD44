@@ -19,6 +19,12 @@ public class UITextManager : Singleton<UITextManager>
         GameOverPanel.SetActive(false);
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        SetWave(1);
+    }
+
     public void SetWave(int wave)
     {
         waveText.text = "Wave " + wave + " of 10";
