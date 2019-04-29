@@ -45,6 +45,12 @@ TagManager:
   - name: Hidden
     uniqueID: 3553265877
     locked: 0
+  - name: CameraBg
+    uniqueID: 3133457557
+    locked: 0
+  - name: BloodBg
+    uniqueID: 416373201
+    locked: 0
   - name: BG
     uniqueID: 490323737
     locked: 0
