@@ -89,6 +89,7 @@ public class LoadingScreenManager : MonoBehaviour
 						(playerObjInScene.transform.position - lowerSpawnPt).sqrMagnitude ?
 							upperSpawnPt :
 							lowerSpawnPt;
+					objref.layer = 0;
 				}
 				break;
 			case LoadingScreenState.Test:
