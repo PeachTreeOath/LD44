@@ -330,7 +330,7 @@ public class Enemy : MonoBehaviour
                 secondsGrabbingGold = 0f;
                 heldTreasure = TreasureController.instance.TakeTreasure(otherCollider.gameObject);
                 hasGold = true;
-                AudioManager.instance.PlaySound("Ch_Ching");
+                AudioManager.instance.PlaySound("coins");
 
             }
             else
@@ -372,7 +372,7 @@ public class Enemy : MonoBehaviour
                 GameObject bloodSprite = Instantiate(ResourceLoader.instance.bloodSprite);
                 bloodSprite.transform.position = transform.position;
                 CameraShake.instance.trauma += 0.4f;
-                AudioManager.instance.PlaySound("Splat");
+                AudioManager.instance.PlaySound("Thud");
             }
         }
         else
@@ -388,7 +388,7 @@ public class Enemy : MonoBehaviour
                 GameObject bloodSprite = Instantiate(ResourceLoader.instance.bloodSprite);
                 bloodSprite.transform.position = transform.position;
                 CameraShake.instance.trauma += 0.8f;
-                AudioManager.instance.PlaySound("Thud");
+                AudioManager.instance.PlaySound("thud2");
             }
         }
     }
@@ -402,6 +402,7 @@ public class Enemy : MonoBehaviour
         {
             TreasureController.instance.DropTreasure(heldTreasure, transform.position);
             Debug.Log("Dropping treasure.");
+            AudioManager.instance.PlaySound("coins");
         }
         Destroy(gameObject);
     }
