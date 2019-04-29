@@ -323,7 +323,7 @@ public class Enemy : MonoBehaviour
     public void OnTriggerStay2D(Collider2D otherCollider)
     {
         //Start picking up gold
-        if (!isInThrowSequence() && !hasGold && otherCollider.gameObject.tag.Equals("gold_pile"))
+        if (otherCollider.gameObject.tag.Equals("gold_pile") && !isInThrowSequence() && !hasGold)
         {
             if (secondsGrabbingGold >= goldGatherTime)
             {
@@ -339,12 +339,9 @@ public class Enemy : MonoBehaviour
                 secondsGrabbingGold += Time.deltaTime;
             }
         }
-    }
 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
         //Exit arena and dispose of gold
-        if (!isInThrowSequence() && hasGold && collision.gameObject.tag.Equals("door"))
+        if (otherCollider.gameObject.tag.Equals("door") && !isInThrowSequence() && hasGold)
         {
             TreasureController.instance.DestoryTreasure(heldTreasure);
             hasGold = false;
