@@ -91,7 +91,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         enemiesDead++;
         // enemyAmount--;
-        UITextManager.instance.SetEnemiesLeft(enemyAmountMax - enemiesDead);
+        UITextManager.instance.SetEnemiesLeft(Mathf.Max(0, enemyAmountMax - enemiesDead));
     }
 
     private void DestroyEnemyCount()
