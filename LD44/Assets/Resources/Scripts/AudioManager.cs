@@ -33,18 +33,18 @@ public class AudioManager : Singleton<AudioManager>
         soundMixer = new Dictionary<string, float>
         {
             { "mimic_murder", .7f  },
-            { "Ch_Ching", .7f },
+            { "wood", .4f },
             { "Game_Over", .7f  },
             { "Gold_Escape", .7f  },
             { "mimic_game_over", .7f },
-            { "Oof", .7f  },
+            { "Oof_Light", .3f  },
             { "Splat", .7f  },
             { "Thud", .7f  },
             { "title_screen", .7f  },
             { "Tongue_Contact", .7f  },
-            { "Tongue_Extend", .7f  },
-            { "Tongue_Retract", .7f  },
-            { "Whoosh", .7f }
+            { "Tongue_Extend", .2f  },
+            { "Tongue_Retract", .3f  },
+            { "Whoosh", .4f }
 
 
         };
