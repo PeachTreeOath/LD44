@@ -362,7 +362,7 @@ public class Enemy : MonoBehaviour
             //Vector3 newVelocity = GetPastAverageVelocity() - otherEnemy.GetPastAverageVelocity();
             float newVelocity = GetPastHighestVelocity() + otherEnemy.GetPastHighestVelocity();
             //Debug.LogWarning("ENEMY TO ENEMY COLLISION AT " + newVelocity.magnitude);
-            Debug.LogWarning("ENEMY TO ENEMY COLLISION AT " + newVelocity);
+            //Debug.LogWarning("ENEMY TO ENEMY COLLISION AT " + newVelocity);
             //if (newVelocity.magnitude > minimumCollisionVelocityForDeath)
             if (newVelocity > minimumCollisionVelocityForDeath)
             {
@@ -375,7 +375,7 @@ public class Enemy : MonoBehaviour
         {
             //Debug.LogWarning("OTHER COLLISION AT " + body.velocity.magnitude);
             //if (GetPastAverageVelocity().magnitude > minimumCollisionVelocityForDeath)
-            Debug.LogWarning("OTHER COLLISION AT " + GetPastHighestVelocity());
+           // Debug.LogWarning("OTHER COLLISION AT " + GetPastHighestVelocity());
             if (GetPastHighestVelocity() > minimumCollisionVelocityForDeath)
             {
                 Die();
