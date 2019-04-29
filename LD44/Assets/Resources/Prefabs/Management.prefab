@@ -59,6 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mimicClosedSprite: {fileID: 21300000, guid: fe54ea1c3ad79437fb2a2a7f530dd196, type: 3}
   mimicOpenedSprite: {fileID: 21300000, guid: b2b80c5c858f14b82817e3c7f6e64895, type: 3}
+  lickParticles: {fileID: 0}
 --- !u!114 &592650767271156127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,13 +74,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPointParent: {fileID: 0}
   enemyTypes:
-  - {fileID: 9060824101604871431, guid: 5da755f04536a6347af725551ecf461a, type: 3}
-  - {fileID: 777326490716732763, guid: 0af0924f398c52f448f00d67ab425b80, type: 3}
   - {fileID: 2318720308379033800, guid: 116ed6c5d2481e743acc3550268d9418, type: 3}
-  - {fileID: 3048728808124711267, guid: 49a62de156d17884c900336833d13dae, type: 3}
+  - {fileID: 777326490716732763, guid: 0af0924f398c52f448f00d67ab425b80, type: 3}
   spawnEnemyOn: 1
   inWave: 0
   spawnDelay: 3
   spawnTimer: 0
   waveDelay: 0
   waveTimer: 5
+  waveTimerReset: 5
