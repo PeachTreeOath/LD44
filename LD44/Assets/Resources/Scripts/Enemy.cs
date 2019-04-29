@@ -401,7 +401,7 @@ public class Enemy : MonoBehaviour
         if (hasGold)
         {
             TreasureController.instance.DropTreasure(heldTreasure, transform.position);
-            Debug.Log("Dropping treasure.");
+          //  Debug.Log("Dropping treasure.");
             AudioManager.instance.PlaySound("coins");
         }
         Destroy(gameObject);
