@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
+    // bg colors
+    public Color startingBg;
+    public Color endingBg;
+
+    [SerializeField]
+    private GameObject bloodDripGO;
+
     [SerializeField]
     private GameObject spawnPointParent;
 
@@ -123,11 +130,19 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         enemyAmountMax += 2;
         waveNumber++;
+
         if (waveNumber == 11)
         {
             GameManager.instance.GotoVictoryScene();
             return;
         }
+        
+        // Change BG color and drip blood
+        Camera camera = Camera.main;
+        camera.backgroundColor = Color.Lerp(startingBg, endingBg, waveNumber/10f);
+        Transform bloodDripTransorm = bloodDripGO.GetComponent<Transform>();
+        bloodDripTransorm.position -= new Vector3(0, 1.3f, 0);
+
         spawnEnemyOn = true;
         spawnDelay -= 0.25f;
         enemyAmount = 0;
