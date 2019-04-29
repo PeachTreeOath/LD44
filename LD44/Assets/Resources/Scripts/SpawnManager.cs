@@ -123,6 +123,11 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         enemyAmountMax += 2;
         waveNumber++;
+        if (waveNumber == 11)
+        {
+            GameManager.instance.GotoVictoryScene();
+            return;
+        }
         spawnEnemyOn = true;
         spawnDelay -= 0.25f;
         enemyAmount = 0;

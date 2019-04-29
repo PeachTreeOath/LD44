@@ -128,7 +128,8 @@ public class TongueTip : MonoBehaviour
         tonguedEnemy = other.GetComponentInChildren<Enemy>();
         if (tonguedEnemy && Input.GetButton("Fire1"))
         {
-            Instantiate(ResourceLoader.instance.lickParticles);
+            GameObject lick = Instantiate(ResourceLoader.instance.lickParticles);
+            lick.transform.position = transform.position;
             tonguedEnemy.StartGrab();
             isTongueExtending = false;
             isTongueReturning = false;

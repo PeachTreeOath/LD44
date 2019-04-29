@@ -62,4 +62,9 @@ public class GameManager : Singleton<GameManager>
             CurrentState = GameState.MainGame;
         }
     }
+
+    public void GotoVictoryScene()
+    {
+        SceneManager.LoadScene("VictoryScreen");
+    }
 }
