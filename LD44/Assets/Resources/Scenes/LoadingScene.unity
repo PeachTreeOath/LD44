@@ -521,9 +521,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'Attack the enemy by grabbing and flinging them!
 
-    Reminder: HOLD left-click to grab
+    HOLD left-click to grab
 
-    LET GO to release'
+    MOVE MOUSE AND LET GO to throw'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7e1136473067c4d41a2d328dafed014b, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -308,7 +308,7 @@ public class LoadingSceneEnemy : MonoBehaviour
 		}
 
 		// Janky fix for making sure the loading scene enemy dies
-		if (collision.tag == "LoadingSceneWall")
+		if (collision.tag == "LoadingSceneWall" && isThrown)
 		{
 			Die();
 		}
