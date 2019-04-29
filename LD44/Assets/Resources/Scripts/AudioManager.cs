@@ -67,7 +67,7 @@ public class AudioManager : Singleton<AudioManager>
         }
 
         ToggleMute(mute);
-        //PlayMusic("Ch_Ching");
+        PlayMusic("mimic_murder");
     }
 
 	public void UpdateOverallVolume()
