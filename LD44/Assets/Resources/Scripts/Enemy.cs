@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public float walkSpeed;
     public float timeToRecalcTarget = 3f;
     public float timeInStun;
+    public float timeInCorpse = 1f;
 
     public float throwSpeed;
     public float moveTowardsSpeed;
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
     private bool isGrabbed;
     private bool isThrown;
     private bool isStunned;
+    private bool isCorpse;
     [HideInInspector] public Rigidbody2D body;
     private Queue<Vector3> previousPositions = new Queue<Vector3>();
     private Vector3 previousPosition;
@@ -31,6 +33,7 @@ public class Enemy : MonoBehaviour
     private float secondsGrabbingGold = 0f;
     private float secondsMovingToTarget = 0f;
     private float secondsStunned = 0f;
+    private float secondsAsCorpse = 0f;
     private GameObject heldTreasure = null;
     private Animator anim;
 
@@ -97,7 +100,15 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGrabbed)
+        if (isCorpse)
+        {
+            secondsAsCorpse += Time.deltaTime;
+            if (secondsAsCorpse >= timeInCorpse)
+            {
+                Die();
+            }
+        }
+        else if (isGrabbed)
         {
             Vector2 newPos = Vector2.MoveTowards(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), moveTowardsSpeed * Time.deltaTime);
             body.position = newPos;
@@ -142,7 +153,7 @@ public class Enemy : MonoBehaviour
     //Bundles all of the states where AI behavior needs to be disabled.
     private bool isInThrowSequence()
     {
-        return isThrown || isGrabbed || isStunned;
+        return isThrown || isGrabbed || isStunned || isCorpse;
     }
 
     private void MoveTowardNearestObjectWithTag(string tag)
@@ -268,17 +279,17 @@ public class Enemy : MonoBehaviour
         if (otherEnemy)
         {
             Vector3 newVelocity = body.velocity - otherEnemy.body.velocity;
-            Debug.LogWarning("COLLISION AT " + newVelocity.magnitude);
+            //Debug.LogWarning("COLLISION AT " + newVelocity.magnitude);
             if (newVelocity.magnitude > minimumCollisionVelocityForDeath)
             {
-                Die();
+                isCorpse = true;
                 CameraShake.instance.trauma += 0.5f;
                 AudioManager.instance.PlaySound("Splat");
             }
         }
         else
         {
-            Debug.LogWarning("COLLISION AT " + body.velocity.magnitude);
+            //Debug.LogWarning("COLLISION AT " + body.velocity.magnitude);
             if (body.velocity.magnitude > minimumCollisionVelocityForDeath)
             {
                 Die();
