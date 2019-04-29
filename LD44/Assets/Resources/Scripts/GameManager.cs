@@ -56,7 +56,6 @@ public class GameManager : Singleton<GameManager>
             CurrentState = GameState.GameOver;
             //UITextManager.instance.OnGameOver();
             SceneManager.LoadScene("GameOverScreen");
-            AudioManager.instance.PlaySound("Game_Over");
         }
         else
         {

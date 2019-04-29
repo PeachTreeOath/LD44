@@ -103,6 +103,19 @@ public class TreasureController : MonoBehaviour
         return found.Value;
     }
 
+    public void DropTreasure(GameObject treasure, Vector2 location)
+    {
+        KeyValuePair<Vector2, GameObject> found = treasures.FirstOrDefault(obj => obj.Value == treasure);
+
+        if (found.Key != null)
+        {
+            CountChangedEvent?.Invoke(treasures.Count);
+            treasure.transform.position = location;
+            treasure.SetActive(true);
+        }
+        
+    }
+
     public bool DestoryTreasure(GameObject treasure)
     {
         KeyValuePair<Vector2, GameObject> found = treasures.FirstOrDefault(obj => obj.Value == treasure);

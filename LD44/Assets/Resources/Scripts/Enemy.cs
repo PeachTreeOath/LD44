@@ -392,7 +392,7 @@ public class Enemy : MonoBehaviour
 
         if (hasGold)
         {
-            TreasureController.instance.PlaceTreasure(heldTreasure, transform.position);
+            TreasureController.instance.DropTreasure(heldTreasure, transform.position);
             Debug.Log("Dropping treasure.");
         }
         Destroy(gameObject);
