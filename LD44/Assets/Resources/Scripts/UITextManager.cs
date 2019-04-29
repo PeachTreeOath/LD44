@@ -55,13 +55,13 @@ public class UITextManager : Singleton<UITextManager>
                 startWaveDescText.text = "Big money, big prizes, I love it!";
                 break;
             case 8:
-                startWaveDescText.text = "The wheel of fate is turning!";
+                startWaveDescText.text = "The wheel of fate is turning...";
                 break;
             case 9:
                 startWaveDescText.text = "Decide the destiny!";
                 break;
             case 10:
-                startWaveDescText.text = "Can't escape from crossing fate!";
+                startWaveDescText.text = "Can't escape from crossing fate!!";
                 break;
         }
     }

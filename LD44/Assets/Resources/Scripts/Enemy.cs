@@ -367,9 +367,17 @@ public class Enemy : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other)
     {
+        if(isGrabbed)
+        {
+            return;
+        }
+
         Enemy otherEnemy = other.gameObject.GetComponent<Enemy>();
         if (otherEnemy)
         {
+            if (otherEnemy.isGrabbed)
+                return;
+
             //Vector3 newVelocity = body.velocity - otherEnemy.body.velocity;
             //Vector3 newVelocity = GetPastAverageVelocity() - otherEnemy.GetPastAverageVelocity();
             float newVelocity = GetPastHighestVelocity() + otherEnemy.GetPastHighestVelocity();

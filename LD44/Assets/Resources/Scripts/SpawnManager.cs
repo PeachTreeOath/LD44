@@ -103,12 +103,14 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void DestroyEnemyCount()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.X))
         {
             enemyAmount = 0;
             enemiesDead = enemyAmountMax;
             Debug.Log("Enemy amount = " + enemyAmount);
         }
+        */
     }
 
     private void StartNewWave()
